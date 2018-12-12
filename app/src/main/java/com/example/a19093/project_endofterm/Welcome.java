@@ -31,22 +31,29 @@ public class Welcome extends AppCompatActivity implements View.OnClickListener {
         int flag= WindowManager.LayoutParams.FLAG_FULLSCREEN;
         //设置当前窗体为全屏显示
         getWindow().setFlags(flag, flag);
+
+        //Intent service = new Intent(this,GetDataService.class);
+        //startService(service);
+
+        //将来要删掉下面两行
         setContentView(R.layout.activity_welcome);
-        initView();
-        timer.schedule(task, 1000, 1000);//等待时间一秒，停顿时间一秒
-        /**
-         * 正常情况下不点击跳过
-         */
-        handler = new Handler();
-        handler.postDelayed(runnable = new Runnable() {
-            @Override
-            public void run() {
-                //从闪屏界面跳转到首界面
-                Intent intent = new Intent(Welcome.this, WeatherForecast.class);
-                startActivity(intent);
-                finish();
-            }
-        }, 5000);//延迟5S后发送handler信息
+        Intent intent = new Intent(Welcome.this, WeatherForecast.class);
+        startActivity(intent);
+//        initView();
+//        timer.schedule(task, 1000, 1000);//等待时间一秒，停顿时间一秒
+//        /**
+//         * 正常情况下不点击跳过
+//         */
+//        handler = new Handler();
+//        handler.postDelayed(runnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                //从闪屏界面跳转到首界面
+//                Intent intent = new Intent(Welcome.this, WeatherForecast.class);
+//                startActivity(intent);
+//                finish();
+//            }
+//        }, 5000);//延迟5S后发送handler信息
 
     }
 

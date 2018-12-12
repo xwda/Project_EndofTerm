@@ -5,7 +5,6 @@ import java.util.List;
 
 public class WeeklyWeatherForecast {
 
-
     private List<HeWeather6Bean> HeWeather6;
 
     public List<HeWeather6Bean> getHeWeather6() {
@@ -19,9 +18,9 @@ public class WeeklyWeatherForecast {
     public static class HeWeather6Bean {
         /**
          * basic : {"cid":"CN101010100","location":"北京","parent_city":"北京","admin_area":"北京","cnty":"中国","lat":"39.90498734","lon":"116.4052887","tz":"+8.00"}
-         * update : {"loc":"2018-12-11 19:45","utc":"2018-12-11 11:45"}
+         * update : {"loc":"2018-12-12 19:46","utc":"2018-12-12 11:46"}
          * status : ok
-         * daily_forecast : [{"cond_code_d":"100","cond_code_n":"100","cond_txt_d":"晴","cond_txt_n":"晴","date":"2018-12-11","hum":"13","mr":"10:22","ms":"20:18","pcpn":"0.0","pop":"0","pres":"1038","sr":"07:26","ss":"16:49","tmp_max":"-1","tmp_min":"-10","uv_index":"3","vis":"20","wind_deg":"357","wind_dir":"北风","wind_sc":"1-2","wind_spd":"9"},{"cond_code_d":"100","cond_code_n":"100","cond_txt_d":"晴","cond_txt_n":"晴","date":"2018-12-12","hum":"17","mr":"11:01","ms":"21:15","pcpn":"0.0","pop":"0","pres":"1037","sr":"07:27","ss":"16:49","tmp_max":"1","tmp_min":"-9","uv_index":"3","vis":"20","wind_deg":"5","wind_dir":"北风","wind_sc":"1-2","wind_spd":"11"},{"cond_code_d":"100","cond_code_n":"100","cond_txt_d":"晴","cond_txt_n":"晴","date":"2018-12-13","hum":"18","mr":"11:35","ms":"22:12","pcpn":"0.0","pop":"0","pres":"1037","sr":"07:28","ss":"16:50","tmp_max":"3","tmp_min":"-7","uv_index":"0","vis":"20","wind_deg":"254","wind_dir":"西南风","wind_sc":"1-2","wind_spd":"1"}]
+         * daily_forecast : [{"cond_code_d":"100","cond_code_n":"100","cond_txt_d":"晴","cond_txt_n":"晴","date":"2018-12-12","hum":"17","mr":"11:01","ms":"21:15","pcpn":"0.0","pop":"0","pres":"1037","sr":"07:27","ss":"16:49","tmp_max":"1","tmp_min":"-8","uv_index":"3","vis":"20","wind_deg":"-1","wind_dir":"无持续风向","wind_sc":"1-2","wind_spd":"8"},{"cond_code_d":"100","cond_code_n":"100","cond_txt_d":"晴","cond_txt_n":"晴","date":"2018-12-13","hum":"18","mr":"11:35","ms":"22:12","pcpn":"0.0","pop":"0","pres":"1037","sr":"07:28","ss":"16:50","tmp_max":"3","tmp_min":"-7","uv_index":"4","vis":"20","wind_deg":"186","wind_dir":"南风","wind_sc":"1-2","wind_spd":"11"},{"cond_code_d":"100","cond_code_n":"100","cond_txt_d":"晴","cond_txt_n":"晴","date":"2018-12-14","hum":"23","mr":"12:06","ms":"23:09","pcpn":"0.0","pop":"0","pres":"1037","sr":"07:28","ss":"16:50","tmp_max":"3","tmp_min":"-6","uv_index":"2","vis":"20","wind_deg":"170","wind_dir":"南风","wind_sc":"1-2","wind_spd":"8"},{"cond_code_d":"101","cond_code_n":"101","cond_txt_d":"多云","cond_txt_n":"多云","date":"2018-12-15","hum":"31","mr":"12:35","ms":"00:00","pcpn":"0.0","pop":"0","pres":"1029","sr":"07:29","ss":"16:50","tmp_max":"3","tmp_min":"-5","uv_index":"2","vis":"20","wind_deg":"355","wind_dir":"北风","wind_sc":"1-2","wind_spd":"8"},{"cond_code_d":"101","cond_code_n":"101","cond_txt_d":"多云","cond_txt_n":"多云","date":"2018-12-16","hum":"29","mr":"13:03","ms":"00:07","pcpn":"0.0","pop":"0","pres":"1027","sr":"07:30","ss":"16:50","tmp_max":"6","tmp_min":"-5","uv_index":"2","vis":"20","wind_deg":"6","wind_dir":"北风","wind_sc":"1-2","wind_spd":"3"},{"cond_code_d":"100","cond_code_n":"100","cond_txt_d":"晴","cond_txt_n":"晴","date":"2018-12-17","hum":"28","mr":"13:30","ms":"01:07","pcpn":"0.0","pop":"0","pres":"1026","sr":"07:30","ss":"16:51","tmp_max":"5","tmp_min":"-5","uv_index":"2","vis":"20","wind_deg":"220","wind_dir":"西南风","wind_sc":"1-2","wind_spd":"3"},{"cond_code_d":"101","cond_code_n":"101","cond_txt_d":"多云","cond_txt_n":"多云","date":"2018-12-18","hum":"28","mr":"13:59","ms":"02:07","pcpn":"0.0","pop":"0","pres":"1017","sr":"07:31","ss":"16:51","tmp_max":"5","tmp_min":"-4","uv_index":"2","vis":"10","wind_deg":"314","wind_dir":"西北风","wind_sc":"4-5","wind_spd":"30"}]
          */
 
         private BasicBean basic;
@@ -149,8 +148,8 @@ public class WeeklyWeatherForecast {
 
         public static class UpdateBean {
             /**
-             * loc : 2018-12-11 19:45
-             * utc : 2018-12-11 11:45
+             * loc : 2018-12-12 19:46
+             * utc : 2018-12-12 11:46
              */
 
             private String loc;
@@ -179,23 +178,23 @@ public class WeeklyWeatherForecast {
              * cond_code_n : 100
              * cond_txt_d : 晴
              * cond_txt_n : 晴
-             * date : 2018-12-11
-             * hum : 13
-             * mr : 10:22
-             * ms : 20:18
+             * date : 2018-12-12
+             * hum : 17
+             * mr : 11:01
+             * ms : 21:15
              * pcpn : 0.0
              * pop : 0
-             * pres : 1038
-             * sr : 07:26
+             * pres : 1037
+             * sr : 07:27
              * ss : 16:49
-             * tmp_max : -1
-             * tmp_min : -10
+             * tmp_max : 1
+             * tmp_min : -8
              * uv_index : 3
              * vis : 20
-             * wind_deg : 357
-             * wind_dir : 北风
+             * wind_deg : -1
+             * wind_dir : 无持续风向
              * wind_sc : 1-2
-             * wind_spd : 9
+             * wind_spd : 8
              */
 
             private String cond_code_d;
