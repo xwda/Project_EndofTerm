@@ -10,10 +10,17 @@
         android:text="多天预报"
         android:id="@+id/button"
         android:textSize="18dp"
+        android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="30dp" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#696969" />
     <LinearLayout
         android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="400dp">
         <LinearLayout
@@ -446,8 +453,10 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dip"
+        android:background="#696969" />
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"

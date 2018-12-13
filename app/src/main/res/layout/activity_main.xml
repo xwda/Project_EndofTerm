@@ -1,15 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".MainActivity">
-    <Button
-        android:text="Button"
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
-</LinearLayout>
+
+    <RadioGroup
+        android:id="@+id/rg_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bg_white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_channel"
+            style="@style/tab_menu_item"
+            android:text="多天预报" />
+
+        <RadioButton
+            android:id="@+id/rb_message"
+            style="@style/tab_menu_item"
+            android:text="今日详情" />
+
+        <RadioButton
+            android:id="@+id/rb_better"
+            style="@style/tab_menu_item"
+            android:text="设定位置" />
+
+    </RadioGroup>
+
+    <View
+        android:id="@+id/div_tab_bar"
+        android:layout_width="match_parent"
+        android:layout_height="2px"
+        android:layout_above="@id/rg_tab_bar"
+        android:background="@color/div_white" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/div_tab_bar" />
+</RelativeLayout>
