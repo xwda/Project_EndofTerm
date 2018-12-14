@@ -1,17 +1,401 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/bg_white"
-    android:orientation="vertical">
-
-    <TextView
-        android:id="@+id/txt_content"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="呵呵"
-        android:textColor="@color/text_yellow"
-        android:textSize="20sp" />
+        android:layout_height="match_parent">
+        <TextView
+            android:textColor="@color/text_black"
+            android:text="今日详情"
+            android:id="@+id/button"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#696969" />
+        <HorizontalScrollView
+            android:layout_marginTop="10dp"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/time0"
+                        style="@style/compentToday"
+                        android:text="13:00" />
+
+                    <TextView
+                        android:id="@+id/time1"
+                        style="@style/compentToday"
+                        android:text="13:00" />
+
+                    <TextView
+                        android:id="@+id/time2"
+                        style="@style/compentToday"
+                        android:text="13:00" />
+
+                    <TextView
+                        android:id="@+id/time3"
+                        style="@style/compentToday"
+                        android:text="13:00" />
+
+                    <TextView
+                        android:id="@+id/time4"
+                        style="@style/compentToday"
+                        android:text="13:00" />
+
+                    <TextView
+                        android:id="@+id/time5"
+                        style="@style/compentToday"
+                        android:text="13:00" />
+
+                    <TextView
+                        android:id="@+id/time6"
+                        style="@style/compentToday"
+                        android:text="13:00" />
+
+                    <TextView
+                        android:id="@+id/time7"
+                        style="@style/compentToday"
+                        android:text="13:00" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tmp0"
+                        style="@style/compentToday"
+                        android:text="12℃" />
+
+                    <TextView
+                        android:id="@+id/tmp1"
+                        style="@style/compentToday"
+                        android:text="12℃" />
+
+                    <TextView
+                        android:id="@+id/tmp2"
+                        style="@style/compentToday"
+                        android:text="12℃" />
+
+                    <TextView
+                        android:id="@+id/tmp3"
+                        style="@style/compentToday"
+                        android:text="12℃" />
+
+                    <TextView
+                        android:id="@+id/tmp4"
+                        style="@style/compentToday"
+                        android:text="12℃" />
+
+                    <TextView
+                        android:id="@+id/tmp5"
+                        style="@style/compentToday"
+                        android:text="12℃" />
+
+                    <TextView
+                        android:id="@+id/tmp6"
+                        style="@style/compentToday"
+                        android:text="12℃" />
+
+                    <TextView
+                        android:id="@+id/tmp7"
+                        style="@style/compentToday"
+                        android:text="12℃" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cond_txt0"
+                        style="@style/compentToday"
+                        android:text="大雪" />
+
+                    <TextView
+                        android:id="@+id/cond_txt1"
+                        style="@style/compentToday"
+                        android:text="大雪" />
+
+                    <TextView
+                        android:id="@+id/cond_txt2"
+                        style="@style/compentToday"
+                        android:text="大雪" />
+
+                    <TextView
+                        android:id="@+id/cond_txt3"
+                        style="@style/compentToday"
+                        android:text="大雪" />
+
+                    <TextView
+                        android:id="@+id/cond_txt4"
+                        style="@style/compentToday"
+                        android:text="大雪" />
+
+                    <TextView
+                        android:id="@+id/cond_txt5"
+                        style="@style/compentToday"
+                        android:text="大雪" />
+
+                    <TextView
+                        android:id="@+id/cond_txt6"
+                        style="@style/compentToday"
+                        android:text="大雪" />
+
+                    <TextView
+                        android:id="@+id/cond_txt7"
+                        style="@style/compentToday"
+                        android:text="大雪" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/wind_dir0"
+                        style="@style/compentToday"
+                        android:text="西北风" />
+
+                    <TextView
+                        android:id="@+id/wind_dir1"
+                        style="@style/compentToday"
+                        android:text="西北风" />
+
+                    <TextView
+                        android:id="@+id/wind_dir2"
+                        style="@style/compentToday"
+                        android:text="西北风" />
+
+                    <TextView
+                        android:id="@+id/wind_dir3"
+                        style="@style/compentToday"
+                        android:text="西北风" />
+
+                    <TextView
+                        android:id="@+id/wind_dir4"
+                        style="@style/compentToday"
+                        android:text="西北风" />
+
+                    <TextView
+                        android:id="@+id/wind_dir5"
+                        style="@style/compentToday"
+                        android:text="西北风" />
+
+                    <TextView
+                        android:id="@+id/wind_dir6"
+                        style="@style/compentToday"
+                        android:text="西北风" />
+
+                    <TextView
+                        android:id="@+id/wind_dir7"
+                        style="@style/compentToday"
+                        android:text="西北风" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/wind_sc0"
+                        style="@style/compentToday"
+                        android:text="3-4级" />
+
+                    <TextView
+                        android:id="@+id/wind_sc1"
+                        style="@style/compentToday"
+                        android:text="3-4级" />
+
+                    <TextView
+                        android:id="@+id/wind_sc2"
+                        style="@style/compentToday"
+                        android:text="3-4级" />
+
+                    <TextView
+                        android:id="@+id/wind_sc3"
+                        style="@style/compentToday"
+                        android:text="3-4级" />
+
+                    <TextView
+                        android:id="@+id/wind_sc4"
+                        style="@style/compentToday"
+                        android:text="3-4级" />
+
+                    <TextView
+                        android:id="@+id/wind_sc5"
+                        style="@style/compentToday"
+                        android:text="3-4级" />
+
+                    <TextView
+                        android:id="@+id/wind_sc6"
+                        style="@style/compentToday"
+                        android:text="3-4级" />
+
+                    <TextView
+                        android:id="@+id/wind_sc7"
+                        style="@style/compentToday"
+                        android:text="3-4级" />
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
+        <TextView
+            android:textColor="@color/text_black"
+            android:layout_marginTop="20dp"
+            android:text="生活指数"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#696969" />
+        <ScrollView
+            android:layout_marginTop="10dp"
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/comf_type"
+                            style="@style/compentType" />
+                        <TextView
+                            android:text="【舒适度指数】"
+                            style="@style/compentAnnotation" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/comf_txt"
+                        style="@style/compentSmall" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/drsg_type"
+                            style="@style/compentType" />
+                        <TextView
+                            android:text="【穿衣指数】"
+                            style="@style/compentAnnotation" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/drsg_txt"
+                        style="@style/compentSmall" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/flu_type"
+                            style="@style/compentType" />
+                        <TextView
+                            android:text="【感冒指数】"
+                            style="@style/compentAnnotation" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/flu_txt"
+                        style="@style/compentSmall" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/sport_type"
+                            style="@style/compentType" />
+                        <TextView
+                            android:text="【运动指数】"
+                            style="@style/compentAnnotation" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/sport_txt"
+                        style="@style/compentSmall" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/trav_type"
+                            style="@style/compentType" />
+                        <TextView
+                            android:text="【旅游指数】"
+                            style="@style/compentAnnotation" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/trav_txt"
+                        style="@style/compentSmall" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/uv_type"
+                            style="@style/compentType" />
+                        <TextView
+                            android:text="【紫外线指数】"
+                            style="@style/compentAnnotation"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/uv_txt"
+                        style="@style/compentSmall" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/cw_type"
+                            style="@style/compentType"/>
+                        <TextView
+                            android:text="【洗车指数】"
+                            style="@style/compentAnnotation" />
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/cw_txt"
+                        style="@style/compentSmall" />
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:id="@+id/air_type"
+                            style="@style/compentType" />
+                        <TextView
+                            android:text="【空气污染扩散条件指数】"
+                            style="@style/compentAnnotation"/>
+                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/air_txt"
+                        style="@style/compentSmall" />
+                </LinearLayout>
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
 
 </LinearLayout>

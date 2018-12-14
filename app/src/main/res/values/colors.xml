@@ -8,7 +8,11 @@
     <color name="bg_white">#FFFFFF</color>
     <color name="bg_topbar">#FCFCFC</color>
     <color name="bg_gray">#00F1F1F1</color>
-    <color name="transparent">#00FFFFFF</color>
+    <color name="transparent">#104E8B</color>
+
+    <color name="text_while">#FFFFFF</color>
+    <color name="text_black">#FFFFFF</color>
+    <color name="text_small">#696969</color>
 
     <color name="text_gray">#8D7A71</color>
     <color name="text_white">#FFFFFF</color>

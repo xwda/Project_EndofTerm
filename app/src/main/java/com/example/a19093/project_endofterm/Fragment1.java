@@ -22,7 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Fragment1 extends Fragment implements View.OnClickListener{
+public class Fragment1 extends Fragment{
     View view;
 
     private TextView day0, day1,day2,day3,day4,day5,day6;
@@ -36,8 +36,9 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
     private GetDataService getDataService;
     private WeeklyWeatherForecast weeklyWeatherForecast;
     private String string_weather_forcast;
-    private TextView button;
     private TextView textView;
+    VariableApp variableApp;
+    String string_city;
 
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
@@ -46,7 +47,8 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
                 case 0x001:
                     Gson gson = new Gson();
                     weeklyWeatherForecast = gson.fromJson(string_weather_forcast,WeeklyWeatherForecast.class);
-                    draw();
+                    if(weeklyWeatherForecast != null)
+                        draw();
 //                    textView.setText(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getCid() + "\n");
 //                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getLocation() + "\n");
 //                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getCnty() + "\n");
@@ -67,12 +69,15 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment1, container, false);
-        TextView txt_content = (TextView) view.findViewById(R.id.txt_content);
         bindView();
+
         new Thread() {
             public void run() {
                 try {
-                    string_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/forecast?location=beijing&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
+                    variableApp = (VariableApp)getContext().getApplicationContext();
+                    string_city = variableApp.getCity().toString2();
+                    Log.e("sss", string_city);
+                    string_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/forecast?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -83,9 +88,7 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
     }
 
     void bindView(){
-        button = view.findViewById(R.id.button);
         textView = view.findViewById(R.id.textView);
-        button.setOnClickListener(this);
         day0 = view.findViewById(R.id.day0);
         day1 = view.findViewById(R.id.day1);
         day2 = view.findViewById(R.id.day2);
@@ -263,26 +266,5 @@ public class Fragment1 extends Fragment implements View.OnClickListener{
             }
         }
 
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch(v.getId()){
-            case R.id.button:
-                //TODO
-                new Thread() {
-                    public void run() {
-                        try {
-                            string_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/forecast?location=beijing&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        handler.sendEmptyMessage(0x001);
-                    };
-                }.start();
-                break;
-            default:
-                //TODO
-        }
     }
 }
