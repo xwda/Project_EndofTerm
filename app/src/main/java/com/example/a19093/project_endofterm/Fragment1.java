@@ -2,7 +2,10 @@ package com.example.a19093.project_endofterm;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Handler;
+import android.provider.ContactsContract;
+import android.provider.ContactsContract.Contacts;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,13 +17,37 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.a19093.project_endofterm.Request.WeeklyWeatherForecast;
 import com.google.gson.Gson;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
+
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.view.Chart;
+import lecho.lib.hellocharts.view.LineChartView;
+
+import static android.provider.ContactsContract.Contacts.*;
+import lecho.lib.hellocharts.animation.ChartAnimationListener;
+import lecho.lib.hellocharts.gesture.ContainerScrollType;
+import lecho.lib.hellocharts.gesture.ZoomType;
+import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
+import lecho.lib.hellocharts.model.Axis;
+import lecho.lib.hellocharts.model.Line;
+import lecho.lib.hellocharts.model.LineChartData;
+import lecho.lib.hellocharts.model.PointValue;
+import lecho.lib.hellocharts.model.ValueShape;
+import lecho.lib.hellocharts.model.Viewport;
+import lecho.lib.hellocharts.util.ChartUtils;
+import lecho.lib.hellocharts.view.LineChartView;
 
 public class Fragment1 extends Fragment{
     View view;
@@ -37,6 +64,11 @@ public class Fragment1 extends Fragment{
     private WeeklyWeatherForecast weeklyWeatherForecast;
     private volatile String string_weather_forcast;
     private TextView textView;
+    private float[] y1;
+    private float[] y2;
+    private float[] x;
+    private List<PointValue> value1;
+    private List<PointValue> value2;
     VariableApp variableApp;
     String string_city;
 
@@ -147,6 +179,7 @@ public class Fragment1 extends Fragment{
         wind_sc6 = view.findViewById(R.id.wind_sc6);
     }
     void draw(){
+        if(weeklyWeatherForecast == null)  return ;
 //        getDataService = GetDataService.getIntence();
 //        weeklyWeatherForecast = getDataService.getWeeklyWeatherForecast();
         //int drawableId = getResources().getIdentifier("@drable/x" + weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(0).getCond_code_d(), "drawable", getPackageName());
@@ -240,6 +273,60 @@ public class Fragment1 extends Fragment{
         wind_sc4.setText(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(4).getWind_sc()+"级");
         wind_sc5.setText(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(5).getWind_sc()+"级");
         wind_sc6.setText(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(6).getWind_sc()+"级");
+        y1 = new float[7];
+        y2 = new float[7];
+        x = new float [7];
+        for(int i = 0; i < 7; i ++) x[i] = i*(float)0.5;
+        y1[0] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(0).getTmp_max());
+        y1[1] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(1).getTmp_max());
+        y1[2] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(2).getTmp_max());
+        y1[3] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(3).getTmp_max());
+        y1[4] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(4).getTmp_max());
+        y1[5] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(5).getTmp_max());
+        y1[6] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(6).getTmp_max());
+
+        y2[0] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(0).getTmp_min());
+        y2[1] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(1).getTmp_min());
+        y2[2] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(2).getTmp_min());
+        y2[3] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(3).getTmp_min());
+        y2[4] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(4).getTmp_min());
+        y2[5] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(5).getTmp_min());
+        y2[6] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(6).getTmp_min());
+
+        value1 = new ArrayList<>();
+        value2 = new ArrayList<>();
+        for(int i = 0; i < 7; i ++){
+            value1.add(new PointValue(x[i],y1[i]));
+            value2.add(new PointValue(x[i],y2[i]));
+            Log.e("double", x[i] + " " + y1[i] + " " + y2[i]);
+        }
+        List<Line> lines = new ArrayList<Line>();
+        LineChartView chart = view.findViewById(R.id.chart);
+        Line line1 = new Line(value1).setColor(Color.YELLOW);
+        line1.setHasLines(true);
+        line1.setHasPoints(true);
+        line1.setHasLabels(true);
+        Line line2 = new Line(value2).setColor(Color.BLUE);
+        line2.setHasLines(true);
+        line2.setHasPoints(true);
+        line2.setHasLabels(true);
+        line1.setPointColor(Color.WHITE);
+        line2.setPointColor(Color.WHITE);
+        line1.setPointRadius(4);
+        line2.setPointRadius(4);
+        lines.add(line1);
+        lines.add(line2);
+        line1.setStrokeWidth(2);
+        line2.setStrokeWidth(2);
+        line1.setCubic(false);
+        line2.setCubic(false);
+        LineChartData data = new LineChartData(lines);
+        data.setValueLabelBackgroundEnabled(false);
+        data.setValueLabelsTextColor(R.color.text_yellow);
+        data.setBaseValue(Float.NEGATIVE_INFINITY);
+        data.setValueLabelsTextColor(Color.WHITE);
+        data.setValueLabelTextSize(15);
+        chart.setLineChartData(data);
     }
 
     public int getResource(String imageName){
@@ -267,4 +354,6 @@ public class Fragment1 extends Fragment{
         }
 
     }
+
+
 }

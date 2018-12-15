@@ -170,6 +170,7 @@ public class Fragment2 extends Fragment {
     }
 
     void draw(){
+        if(hourlyWeatherForecast == null || lifestyleForecast == null) return ;
         String tm;
         String[] s;
         tm = hourlyWeatherForecast.getHeWeather6().get(0).getHourly().get(0).getTime();
