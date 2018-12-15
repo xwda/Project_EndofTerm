@@ -50,8 +50,12 @@ public class Add_city extends AppCompatActivity implements View.OnClickListener{
         switch (v.getId()){
             case R.id.btn_add:
                 Intent intent = new Intent();
-                String city = autoCompleteTextView.getText().toString();
-                intent.putExtra("cityName",city);
+                String string_city = autoCompleteTextView.getText().toString();
+                Log.e("huode", string_city);
+                CityOperator cityOperator = new CityOperator(this);
+                City city = new City(string_city);
+                cityOperator.add(city);
+                intent.putExtra("cityName",string_city);
                 variableApp = (VariableApp) getApplicationContext();
                 setResult(1,intent);
                 finish();

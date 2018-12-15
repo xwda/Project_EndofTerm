@@ -21,9 +21,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class Fragment3 extends Fragment implements View.OnClickListener{
     private TextView textView;
+    private TextView list_city;
     private Button button;
+    private Button btn_refresh;
     private View view;
     VariableApp variableApp;
 
@@ -41,12 +45,15 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
 
     private void bindView(){
         textView = view.findViewById(R.id.tv);
+        list_city = view.findViewById(R.id.list_city);
         button = view.findViewById(R.id.add_city);
+        btn_refresh = view.findViewById(R.id.btn_refresh);
         button.setOnClickListener(this);
+        btn_refresh.setOnClickListener(this);
     }
 
     private void draw(){
-        textView.setText("当前位置："+ variableApp.getCity().toString1());
+        textView.setText("当前位置："+ variableApp.getSelectName());
     }
 
     @Override
@@ -54,10 +61,13 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
             case 1:
-                String city = data.getStringExtra("cityName");
-                String[] s = city.split(" ");
-                variableApp.getCity().init(s[0],s[1],s[2]);
-                draw();
+                String name = data.getStringExtra("cityName");
+                list_city.setText("");
+                List<City> cityList = variableApp.getListCity();
+                for(int i = 0; i < cityList.size(); i ++){
+                    list_city.append(cityList.get(i).getName() + " " + cityList.get(i).getIsSelect() + "\n");
+                    Log.e("result",cityList.get(i).getName() + " " + cityList.get(i).getIsSelect());
+                }
                 break;
             default:
                 break;
@@ -74,7 +84,14 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
                 Intent intent = new Intent(getActivity(),Add_city.class);
                 startActivityForResult(intent,1);
                 break;
-        }
+                case R.id.btn_refresh:
+                    List<City> cityList = variableApp.getListCity();
+                    for(int i = 0; i < cityList.size(); i ++){
+                        list_city.append(cityList.get(i).getName() + " " + cityList.get(i).getIsSelect() + "\n");
+                        Log.e("refresh",cityList.get(i).getName() + " " + cityList.get(i).getIsSelect());
+                    }
+                    break;
+            }
     }
 
 }

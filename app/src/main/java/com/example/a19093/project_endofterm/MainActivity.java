@@ -1,11 +1,19 @@
 package com.example.a19093.project_endofterm;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.preference.DialogPreference;
+import android.provider.Settings;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -36,6 +44,14 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if(!isNetworkConnected()){
+            showDialog();
+        }
+        CityOperator cityOperator = new CityOperator(this);
+        City city = new City("泾川 平凉 甘肃");
+        city.setIsSelect("是");
+        cityOperator.add(city);
+
         mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
         bindViews();
         rb_channel.setChecked(true);
@@ -101,4 +117,58 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             }
         }
     }
+
+    /**
+     * 获取当前手机的网络状态
+     *
+     * @return
+     */
+    private boolean isNetworkConnected() {
+
+        ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo info = manager.getActiveNetworkInfo();
+        return (info != null && info.isConnected());
+
+    }
+
+    private void showDialog(){
+        View view = LayoutInflater.from(this).inflate(R.layout.my_dialog,null,false);
+        final AlertDialog dialog = new AlertDialog.Builder(this).setView(view).create();
+        getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        Button btn_cancel_high_opion = view.findViewById(R.id.btn_cancel_high_opion);
+        Button btn_agree_high_opion = view.findViewById(R.id.btn_agree_high_opion);
+
+        btn_cancel_high_opion.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Intent intent = new Intent();
+                //  类名一定要包含包名(这种显示意图不是很好，因为不同的系统可能包名，类名都不同，因此最好采用隐式意图进行跳转)
+                // intent.setClassName("com.android.phone",
+                // "com.android.phone.MiuiMobileNetworkSettings");
+                Intent intent = new Intent();
+                intent.setAction(Settings.ACTION_DATA_ROAMING_SETTINGS);
+                //startActivity(intent);
+                startActivityForResult(intent, 0);  // 如果在设置完成后需要再次进行操作，可以重写操作代码，在这里不再重写
+                finish();
+            }
+        });
+
+
+
+        btn_agree_high_opion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        dialog.show();
+        //此处设置位置窗体大小，我这里设置为了手机屏幕宽度的3/4
+        //dialog.getWindow().setLayout((ScreenUtils.getScreenWidth(this)/4*3),LinearLayout.LayoutParams.WRAP_CONTENT);
+    }
+
+
+
+
+
+
 }

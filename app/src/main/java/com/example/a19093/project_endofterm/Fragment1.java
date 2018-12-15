@@ -102,12 +102,13 @@ public class Fragment1 extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment1, container, false);
         bindView();
+        Log.e("11111111111111", "2222222222222222");
 
         new Thread() {
             public void run() {
                 try {
                     variableApp = (VariableApp)getContext().getApplicationContext();
-                    string_city = variableApp.getCity().toString2();
+                    string_city = variableApp.getSelectCity().toString2();
                     Log.e("11111111111111", string_city);
                     string_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/forecast?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
                 } catch (Exception e) {
@@ -190,6 +191,8 @@ public class Fragment1 extends Fragment{
         Date d;
         String str;
         try {
+            String xu = weeklyWeatherForecast.toString();
+            Log.e("xu", xu);
             String string_date0 = weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(0).getDate();
             d = std1.parse(string_date0);
             date0.setText(std3.format(d));
