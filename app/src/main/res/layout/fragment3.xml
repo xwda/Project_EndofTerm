@@ -5,34 +5,12 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
-        android:layout_margin="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <TextView
-                android:textColor="@color/text_while"
-                android:text="位置信息"
-                android:id="@+id/information"
-                android:textSize="18dp"
-                android:gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp" />
-            <Button
-                android:textColor="@color/text_while"
-                android:id="@+id/button"
-                android:text="选择城市"
-                android:textSize="18dp"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"  />
-
-        </LinearLayout>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:background="#696969" />
         <TextView
             android:textColor="@color/text_while"
             android:layout_marginTop="20dp"
@@ -40,7 +18,16 @@
             android:text="当前位置："
             android:id="@+id/tv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
+        <Button
+            android:layout_marginTop="30dp"
+            android:textColor="@color/text_while"
+            android:id="@+id/add_city"
+            android:background="@drawable/add_city2"
+            android:textSize="18dp"
+            android:layout_gravity="center"
+            android:layout_width="50dp"
+            android:layout_height="50dp"  />
     </LinearLayout>
 
 </LinearLayout>

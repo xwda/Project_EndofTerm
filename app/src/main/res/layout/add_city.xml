@@ -5,8 +5,45 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
+        android:background="#104E8B"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+            <RelativeLayout
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="30dp">
+                <Button
+                    android:id="@+id/btn_back"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/back"
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent" />
+                <TextView
+                    android:text="添加城市"
+                    android:textSize="18dp"
+                    android:textColor="@color/text_while"
+                    android:layout_centerInParent="true"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp" />
+            </RelativeLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#FFFFFFFF" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
         android:orientation="vertical"
-        android:layout_margin="10dp"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <!--android:completionThreshold="1":将从输入第一个进行搜素匹配

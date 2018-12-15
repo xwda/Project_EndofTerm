@@ -41,7 +41,7 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
 
     private void bindView(){
         textView = view.findViewById(R.id.tv);
-        button = view.findViewById(R.id.button);
+        button = view.findViewById(R.id.add_city);
         button.setOnClickListener(this);
     }
 
@@ -70,7 +70,7 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.button:
+            case R.id.add_city:
                 Intent intent = new Intent(getActivity(),Add_city.class);
                 startActivityForResult(intent,1);
                 break;

@@ -35,7 +35,7 @@ public class Fragment1 extends Fragment{
     private TextView wind_sc0, wind_sc1,wind_sc2,wind_sc3,wind_sc4,wind_sc5,wind_sc6;
     private GetDataService getDataService;
     private WeeklyWeatherForecast weeklyWeatherForecast;
-    private String string_weather_forcast;
+    private volatile String string_weather_forcast;
     private TextView textView;
     VariableApp variableApp;
     String string_city;
@@ -76,7 +76,7 @@ public class Fragment1 extends Fragment{
                 try {
                     variableApp = (VariableApp)getContext().getApplicationContext();
                     string_city = variableApp.getCity().toString2();
-                    Log.e("sss", string_city);
+                    Log.e("11111111111111", string_city);
                     string_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/forecast?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
                 } catch (Exception e) {
                     e.printStackTrace();

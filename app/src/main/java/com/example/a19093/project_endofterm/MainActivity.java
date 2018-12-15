@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private RadioButton rb_better;
     private RadioButton rb_setting;
     private ViewPager vpager;
+    private TextView textView;
 
     private MyFragmentPagerAdapter mAdapter;
 
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         vpager.setAdapter(mAdapter);
         vpager.setCurrentItem(0);
         vpager.addOnPageChangeListener(this);
+
+        textView = findViewById(R.id.textView);
     }
 
     @Override
@@ -58,12 +61,15 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         switch (checkedId) {
             case R.id.rb_channel:
                 vpager.setCurrentItem(PAGE_ONE);
+                textView.setText("多天预报");
                 break;
             case R.id.rb_message:
                 vpager.setCurrentItem(PAGE_TWO);
+                textView.setText("今日详情");
                 break;
             case R.id.rb_better:
                 vpager.setCurrentItem(PAGE_THREE);
+                textView.setText("设定位置");
                 break;
         }
     }

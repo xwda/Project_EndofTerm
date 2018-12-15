@@ -5,21 +5,12 @@
     android:layout_height="match_parent">
     <LinearLayout
         android:orientation="vertical"
-        android:layout_margin="20dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:textColor="@color/text_black"
-            android:text="今日详情"
-            android:id="@+id/button"
-            android:textSize="18dp"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:background="#696969" />
         <HorizontalScrollView
             android:layout_marginTop="10dp"
             android:scrollbars="none"

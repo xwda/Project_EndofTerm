@@ -6,520 +6,368 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="10dp">
-        <TextView
-            android:text="多天预报"
-            android:id="@+id/button"
-            android:textSize="18dp"
-            android:textColor="@color/text_while"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp" />
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dip"
-            android:background="#696969" />
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="400dp">
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="20dp">
-                <TextView
-                    android:gravity="center"
-                    android:text="星期三"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/day0"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="星期三"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/day1"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="星期三"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/day2"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="星期三"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/day3"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="星期三"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/day4"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="星期三"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/day5"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="星期三"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/day6"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="20dp">
-                <TextView
-                    android:gravity="center"
-                    android:text="12/11"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/date0"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="12/11"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/date1"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="12/11"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/date2"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="12/11"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/date3"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="12/11"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/date4"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="12/11"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/date5"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="12/11"
-                    android:textColor="@color/text_while"
-                    android:id="@+id/date6"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_d0"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_d1"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_d2"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_d3"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_d4"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_d5"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_d6"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="20dp">
-                <TextView
-                    android:gravity="center"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_d0"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_d1"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_d2"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_d3"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_d4"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_d5"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_d6"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
-                <TextView
-                    android:text="折线图"
-                    android:textSize="40dp"
-                    android:textColor="@color/text_while"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_n0"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_n1"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_n2"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_n3"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_n4"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_n5"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-                <ImageView
-                    android:layout_gravity="center"
-                    android:id="@+id/img_n6"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="51.4285dp" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="20dp">
-                <TextView
-                    android:gravity="center"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_n0"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_n1"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_n2"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_n3"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_n4"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_n5"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="大雪"
-                    android:id="@+id/cond_txt_n6"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="20dp">
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="西北风"
-                    android:id="@+id/wind_dir0"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="西北风"
-                    android:id="@+id/wind_dir1"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="西北风"
-                    android:id="@+id/wind_dir2"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="西北风"
-                    android:id="@+id/wind_dir3"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="西北风"
-                    android:id="@+id/wind_dir4"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="西北风"
-                    android:id="@+id/wind_dir5"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="西北风"
-                    android:id="@+id/wind_dir6"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="20dp">
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="1-2级"
-                    android:id="@+id/wind_sc0"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="1-2级"
-                    android:id="@+id/wind_sc1"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="1-2级"
-                    android:id="@+id/wind_sc2"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:textColor="@color/text_while"
-                    android:text="1-2级"
-                    android:id="@+id/wind_sc3"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="1-2级"
-                    android:id="@+id/wind_sc4"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="1-2级"
-                    android:id="@+id/wind_sc5"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-                <TextView
-                    android:gravity="center"
-                    android:text="1-2级"
-                    android:id="@+id/wind_sc6"
-                    android:textColor="@color/text_while"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content" />
-            </LinearLayout>
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:orientation="vertical">
 
-        </LinearLayout>
+        <HorizontalScrollView
+            android:scrollbars="none"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/day0"
+                        style="@style/compentToday"
+                        android:text="星期三" />
+
+                    <TextView
+                        android:id="@+id/day1"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="星期三"
+                        android:textColor="@color/text_while" />
+
+                    <TextView
+                        android:id="@+id/day2"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="星期三"
+                        android:textColor="@color/text_while" />
+
+                    <TextView
+                        android:id="@+id/day3"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="星期三"
+                        android:textColor="@color/text_while" />
+
+                    <TextView
+                        android:id="@+id/day4"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="星期三"
+                        android:textColor="@color/text_while" />
+
+                    <TextView
+                        android:id="@+id/day5"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="星期三"
+                        android:textColor="@color/text_while" />
+
+                    <TextView
+                        android:id="@+id/day6"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="星期三"
+                        android:textColor="@color/text_while" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/date0"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="12/11"
+                        android:textColor="@color/text_while" />
+
+                    <TextView
+                        android:id="@+id/date1"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="12/11"
+                        android:textColor="@color/text_while" />
+
+                    <TextView
+                        android:id="@+id/date2"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="12/11"
+                        android:textColor="@color/text_while" />
+
+                    <TextView
+                        android:id="@+id/date3"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="12/11"
+                        android:textColor="@color/text_while" />
+
+                    <TextView
+                        android:id="@+id/date4"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="12/11"
+                        android:textColor="@color/text_while" />
+
+                    <TextView
+                        android:id="@+id/date5"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="12/11"
+                        android:textColor="@color/text_while" />
+
+                    <TextView
+                        android:id="@+id/date6"
+                        style="@style/compentToday"
+                        android:gravity="center"
+                        android:text="12/11"
+                        android:textColor="@color/text_while" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/img_d0"
+                        style="@style/compentToday"
+                        android:layout_gravity="center" />
+
+                    <ImageView
+                        android:id="@+id/img_d1"
+                        style="@style/compentToday"
+                        android:layout_gravity="center" />
+
+                    <ImageView
+                        android:id="@+id/img_d2"
+                        style="@style/compentToday"
+                        android:layout_gravity="center" />
+
+                    <ImageView
+                        android:id="@+id/img_d3"
+                        style="@style/compentToday"
+                        android:layout_gravity="center" />
+
+                    <ImageView
+                        android:id="@+id/img_d4"
+                        style="@style/compentToday"
+                        android:layout_gravity="center" />
+
+                    <ImageView
+                        android:id="@+id/img_d5"
+                        style="@style/compentToday"
+                        android:layout_gravity="center" />
+
+                    <ImageView
+                        android:id="@+id/img_d6"
+                        style="@style/compentToday"
+                        android:layout_gravity="center" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cond_txt_d0"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_d1"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_d2"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_d3"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_d4"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_d5"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_d6"
+                        style="@style/compentToday" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="折线图"
+                        android:textColor="@color/text_while"
+                        android:textSize="40dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/img_n0"
+                        style="@style/compentToday"/>
+
+                    <ImageView
+                        android:id="@+id/img_n1"
+                        style="@style/compentToday" />
+
+                    <ImageView
+                        android:id="@+id/img_n2"
+                        style="@style/compentToday" />
+
+                    <ImageView
+                        android:id="@+id/img_n3"
+                        style="@style/compentToday" />
+
+                    <ImageView
+                        android:id="@+id/img_n4"
+                        style="@style/compentToday" />
+
+                    <ImageView
+                        android:id="@+id/img_n5"
+                        style="@style/compentToday" />
+
+                    <ImageView
+                        android:id="@+id/img_n6"
+                        style="@style/compentToday" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/cond_txt_n0"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_n1"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_n2"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_n3"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_n4"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_n5"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/cond_txt_n6"
+                        style="@style/compentToday" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/wind_dir0"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_dir1"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_dir2"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_dir3"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_dir4"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_dir5"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_dir6"
+                        style="@style/compentToday" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/wind_sc0"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_sc1"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_sc2"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_sc3"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_sc4"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_sc5"
+                        style="@style/compentToday" />
+
+                    <TextView
+                        android:id="@+id/wind_sc6"
+                        style="@style/compentToday" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="1dip"
             android:background="#696969" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"

@@ -45,8 +45,8 @@ public class Fragment2 extends Fragment {
     private GetDataService getDataService;
     private HourlyWeatherForecast hourlyWeatherForecast;
     private LifestyleForecast lifestyleForecast;
-    private String string_hourly_weather_forcast;
-    private String string_Lifestyle_forcast;
+    private volatile String string_hourly_weather_forcast;
+    private volatile String string_Lifestyle_forcast;
     private TextView button;
     private TextView textView;
     VariableApp variableApp;
@@ -93,7 +93,7 @@ public class Fragment2 extends Fragment {
                 try {
                     variableApp = (VariableApp)getContext().getApplicationContext();
                     string_city = variableApp.getCity().toString2();
-                    Log.e("sss", string_city);
+                    Log.e("22222222222", string_city);
                     string_hourly_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/hourly?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
                     string_Lifestyle_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/lifestyle?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
                 } catch (Exception e) {

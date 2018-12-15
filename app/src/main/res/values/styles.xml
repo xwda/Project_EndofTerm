@@ -20,6 +20,13 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="compentManyday">
+        <item name="android:layout_width">60dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/text_black</item>
+    </style>
+
     <style name="compentToday">
         <item name="android:layout_width">60dp</item>
         <item name="android:layout_height">wrap_content</item>
