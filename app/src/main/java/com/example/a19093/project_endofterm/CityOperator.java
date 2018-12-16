@@ -70,6 +70,7 @@ public class CityOperator {
         db.execSQL("delete from CitySQ where name=?", new String[] { name });
     }
 
+
     public List<City> getAllCity() {
         ArrayList<City> citys = new ArrayList<City>();
         Cursor c = db.rawQuery("select * from CitySQ", null);
@@ -122,9 +123,14 @@ public class CityOperator {
             }
         }
         if(s2.equals("是")){
-            city = new City(s1);
+            city = new City(s1,"是");
         }
         c.close();
+        if(city == null){
+            city = new City("泾川 平凉 甘肃");
+            city.setIsSelect("是");
+            add(city);
+        }
         return city;
     }
 

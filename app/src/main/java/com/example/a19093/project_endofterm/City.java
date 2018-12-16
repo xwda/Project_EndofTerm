@@ -10,6 +10,11 @@ public class City {
        this.name = name;
        this.isSelect= "否";
     }
+
+    City(String name, String isSelect){
+        this.name = name;
+        this.isSelect= isSelect;
+    }
     public String getName() {
         return name;
     }

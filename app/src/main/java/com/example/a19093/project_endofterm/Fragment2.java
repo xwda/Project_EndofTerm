@@ -91,9 +91,8 @@ public class Fragment2 extends Fragment {
         new Thread() {
             public void run() {
                 try {
-                    variableApp = (VariableApp)getContext().getApplicationContext();
-                    string_city = variableApp.getSelectName();
-                    string_city = variableApp.getSelectCity().toString2();
+                    CityOperator cityOperator = new CityOperator(getContext());
+                    string_city = cityOperator.getIsSelectCity().toString2();
                     string_hourly_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/hourly?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
                     string_Lifestyle_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/lifestyle?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
                 } catch (Exception e) {
