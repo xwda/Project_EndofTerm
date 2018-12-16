@@ -4,44 +4,50 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:orientation="vertical"
         android:layout_marginTop="50dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:textColor="@color/text_while"
-            android:layout_marginTop="20dp"
-            android:textSize="20dp"
-            android:text="当前位置："
-            android:id="@+id/tv"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <Button
-            android:layout_marginTop="30dp"
-            android:textColor="@color/text_while"
-            android:id="@+id/add_city"
-            android:background="@drawable/add_city2"
-            android:textSize="18dp"
-            android:layout_gravity="center"
-            android:layout_width="50dp"
-            android:layout_height="50dp"  />
-    </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="200dp">
-        <TextView
-            android:id="@+id/list_city"
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
-    </ScrollView>
+            android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textColor="@color/text_while"
+                    android:layout_marginTop="20dp"
+                    android:textSize="20dp"
+                    android:text="当前位置："
+                    android:id="@+id/tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+                <Button
+                    android:layout_marginTop="30dp"
+                    android:textColor="@color/text_while"
+                    android:id="@+id/add_city"
+                    android:background="@drawable/add_city2"
+                    android:textSize="18dp"
+                    android:layout_gravity="center"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"  />
+            </LinearLayout>
+                <TextView
+                    android:id="@+id/list_city"
+                    android:layout_width="match_parent"
+                    android:layout_height="330dp" />
+            <Button
+                android:id="@+id/btn_refresh"
+                android:text="刷新"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
 
-    <Button
-        android:id="@+id/btn_refresh"
-        android:text="刷新"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    </LinearLayout>
+
 
 </LinearLayout>

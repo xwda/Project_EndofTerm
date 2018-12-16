@@ -61,13 +61,37 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         super.onActivityResult(requestCode, resultCode, data);
         switch (resultCode) {
             case 1:
-                String name = data.getStringExtra("cityName");
+                CityOperator cityOperator = new CityOperator(getContext());
+                String string_city = data.getStringExtra("cityName");
+                if(cityOperator.getIsExist(string_city) == 1){
+
+                    City toCity = variableApp.getSelectCity();
+                    cityOperator.update(toCity);
+                    toCity = new City(string_city);
+                    toCity.setIsSelect("否");
+                    Log.e("nihaoa",toCity.toString3());
+                    cityOperator.update(toCity);
+                    toCity.setIsSelect("是");
+                    variableApp.setSelectCity(toCity);
+                    variableApp.setListCity();
+                }
+                else{
+                    Log.e("nihaoo",string_city);
+                    City city = new City(string_city);
+                    city.setIsSelect("是");
+                    cityOperator.add(city);
+                    string_city = variableApp.getSelectCity().toString2();
+                    City toCity = variableApp.getSelectCity();
+                    cityOperator.update(toCity);
+                    variableApp.setSelectCity(city);
+                    variableApp.setListCity();
+                }
                 list_city.setText("");
                 List<City> cityList = variableApp.getListCity();
                 for(int i = 0; i < cityList.size(); i ++){
                     list_city.append(cityList.get(i).getName() + " " + cityList.get(i).getIsSelect() + "\n");
-                    Log.e("result",cityList.get(i).getName() + " " + cityList.get(i).getIsSelect());
                 }
+                textView.setText("当前位置："+ variableApp.getSelectName());
                 break;
             default:
                 break;
@@ -84,13 +108,16 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
                 Intent intent = new Intent(getActivity(),Add_city.class);
                 startActivityForResult(intent,1);
                 break;
-                case R.id.btn_refresh:
-                    List<City> cityList = variableApp.getListCity();
-                    for(int i = 0; i < cityList.size(); i ++){
-                        list_city.append(cityList.get(i).getName() + " " + cityList.get(i).getIsSelect() + "\n");
-                        Log.e("refresh",cityList.get(i).getName() + " " + cityList.get(i).getIsSelect());
-                    }
-                    break;
+            case R.id.btn_refresh:
+                list_city.setText("");
+                List<City> cityList = variableApp.getListCity();
+                for(int i = 0; i < cityList.size(); i ++){
+                    list_city.append(cityList.get(i).getName() + " " + cityList.get(i).getIsSelect() + "\n");
+                    Log.e("refresh",cityList.get(i).getName() + " " + cityList.get(i).getIsSelect());
+                }
+                textView.setText("当前位置："+ variableApp.getSelectCity().getName());
+                Log.e("city_var",variableApp.getSelectCity().getName() + " " + variableApp.getSelectCity().getIsSelect());
+                break;
             }
     }
 

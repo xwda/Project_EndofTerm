@@ -48,10 +48,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
             showDialog();
         }
         CityOperator cityOperator = new CityOperator(this);
-        City city = new City("泾川 平凉 甘肃");
-        city.setIsSelect("是");
-        cityOperator.add(city);
-
         mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
         bindViews();
         rb_channel.setChecked(true);

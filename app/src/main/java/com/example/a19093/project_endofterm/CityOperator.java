@@ -1,9 +1,11 @@
 package com.example.a19093.project_endofterm;
 
+import android.database.ContentObservable;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.Context;
 import android.util.Log;
+import android.content.ContentValues;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,19 +22,48 @@ public class CityOperator {
     public void add(City city) {
         Log.e("add", city.getName() + city.getIsSelect());
         try{
-            db.execSQL("insert into CitySQ values(?,?)",
-                    new Object[] { city.getName(), city.getIsSelect()});
+//            db.execSQL("insert into CitySQ values(?,?)",
+//                    new Object[] { city.getName(), city.getIsSelect()});
+            ContentValues cValue = new ContentValues();
+            cValue.put("name",city.getName());
+            cValue.put("isSelect",city.getIsSelect());
+            db.insert("CitySQ",null,cValue);
             Log.e("sucess", "niaho");
         }catch (Exception e){
             Log.e("eeeee", e.toString());
         }
-        Log.e("finsh", "niaho");
     }
 
 
     public void update(City city) {
-        db.execSQL("update CitySQ set isSelector=? where name=?",
-                new Object[] { "是", city.getName() });
+        Log.e("update",city.getName() + " " + city.getIsSelect());
+        try {
+            if (city.getIsSelect().equals("否")) {
+                Log.e("aaa1", city.getName() + " " + city.getIsSelect());
+                ContentValues cValue = new ContentValues();
+                cValue.put("isSelect", "是");
+                String whereClause = "name=?";
+                String[] whereArgs = {city.getName()};
+                db.update("CitySQ", cValue, whereClause, whereArgs);
+
+            } else {
+                Log.e("aaa2", city.getName() + " " + city.getIsSelect());
+                ContentValues cValue = new ContentValues();
+                cValue.put("isSelect", "否");
+                String whereClause = "name=?";
+                String[] whereArgs = {city.getName()};
+                db.update("CitySQ", cValue, whereClause, whereArgs);
+            }
+        }catch (Exception e){
+            Log.e("eeeee", e.toString());
+        }
+
+        List<City> mycity = getAllCity();
+        for(int i = 0; i < mycity.size(); i ++){
+            Log.e("dddd", mycity.get(i).getName() + " " + mycity.get(i).getIsSelect());
+        }
+
+
     }
 
     public void delete(String name) {
@@ -95,5 +126,21 @@ public class CityOperator {
         }
         c.close();
         return city;
+    }
+
+    public int getIsExist(String name){
+        Cursor c = db.rawQuery("select * from CitySQ", null);
+        String s1,s2;
+        while (c.moveToNext()) {
+            City city = new City();
+            s1 = c.getString(0);
+            s2 = c.getString(1);
+            if(s1.equals(name)){
+                c.close();
+                return 1;
+            }
+        }
+        c.close();
+        return 0;
     }
 }

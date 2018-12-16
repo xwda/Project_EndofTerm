@@ -330,6 +330,7 @@ public class Fragment1 extends Fragment{
         data.setValueLabelsTextColor(Color.WHITE);
         data.setValueLabelTextSize(15);
         chart.setLineChartData(data);
+        chart.setInteractive(false);
     }
 
     public int getResource(String imageName){

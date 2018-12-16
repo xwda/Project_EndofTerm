@@ -34,4 +34,7 @@ public class City {
         s = name.split(" ");
         return s[0] + "," + s[1];
     }
+    public String toString3(){
+        return name + " " + isSelect;
+    }
 }

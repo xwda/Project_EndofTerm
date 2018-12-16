@@ -28,18 +28,29 @@ public class VariableApp extends Application {
             city.setIsSelect("是");
             selectCity = city;
         }
+        else{
+            selectCity.setIsSelect("是");
+            Log.e("begin1",selectCity.getName() + "" + selectCity.getIsSelect());
+        }
         weeklyWeatherForecast = new WeeklyWeatherForecast();
         hourlyWeatherForecast = new HourlyWeatherForecast();
         listCity = cityOperator.getAllCity();
-        for(int i = 0; i < listCity.size(); i ++){
-            Log.e("begin", listCity.get(i).toString1());
-        }
         instance = this;
     }
 
     public String getSelectName(){
+        //CityOperator cityOperator = new CityOperator(this);
+        return this.selectCity.getName();
+    }
+
+    public void setSelectCity(City city){
+        this.selectCity.setName(city.getName());
+        this.selectCity.setIsSelect(city.getIsSelect());
+    }
+
+    public void setListCity(){
         CityOperator cityOperator = new CityOperator(this);
-        return cityOperator.getIsSelectName();
+        this.listCity =  cityOperator.getAllCity();
     }
 
     public City getSelectCity(){
