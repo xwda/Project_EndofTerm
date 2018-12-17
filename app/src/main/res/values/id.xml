@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="id_city_name" type="id"></item>
+    <item name="id_city_status" type="id"></item>
+</resources>

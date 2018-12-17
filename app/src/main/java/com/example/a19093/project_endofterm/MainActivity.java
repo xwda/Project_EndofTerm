@@ -7,6 +7,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.preference.DialogPreference;
 import android.provider.Settings;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,6 +18,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     private TextView textView;
 
     private MyFragmentPagerAdapter mAdapter;
+    private List<Fragment> fragments;
 
     //几个代表页面的常量
     public static final int PAGE_ONE = 0;
@@ -47,10 +52,21 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         if(!isNetworkConnected()){
             showDialog();
         }
-        CityOperator cityOperator = new CityOperator(this);
-        mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager());
+        Fragment1 f1 = new Fragment1();
+        Fragment2 f2 = new Fragment2();
+        Fragment3 f3 = new Fragment3();
+        fragments = new ArrayList<>();
         bindViews();
+        fragments.add(f1);
+        fragments.add(f2);
+        fragments.add(f3);
+        mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),fragments);
+        vpager = (ViewPager) findViewById(R.id.vpager);
+        vpager.setAdapter(mAdapter);
+        vpager.addOnPageChangeListener(this);
         rb_channel.setChecked(true);
+        vpager.setCurrentItem(0);
+        CityOperator cityOperator = new CityOperator(this);
     }
 
     private void bindViews() {
@@ -60,10 +76,7 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         rb_better = (RadioButton) findViewById(R.id.rb_better);
         rg_tab_bar.setOnCheckedChangeListener(this);
 
-        vpager = (ViewPager) findViewById(R.id.vpager);
-        vpager.setAdapter(mAdapter);
-        vpager.setCurrentItem(0);
-        vpager.addOnPageChangeListener(this);
+
 
         textView = findViewById(R.id.textView);
     }

@@ -82,6 +82,7 @@ public class Fragment2 extends Fragment {
 
 
     public Fragment2() {
+        Log.e("22222","init");
     }
 
     @Override
@@ -93,6 +94,7 @@ public class Fragment2 extends Fragment {
                 try {
                     CityOperator cityOperator = new CityOperator(getContext());
                     string_city = cityOperator.getIsSelectCity().toString2();
+                    Log.e("222222",string_city);
                     string_hourly_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/hourly?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
                     string_Lifestyle_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/lifestyle?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
                 } catch (Exception e) {

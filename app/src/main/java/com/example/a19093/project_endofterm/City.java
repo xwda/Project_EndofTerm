@@ -33,7 +33,6 @@ public class City {
     public String toString1(){
         return name;
     }
-
     public String toString2(){
         String[] s;
         s = name.split(" ");

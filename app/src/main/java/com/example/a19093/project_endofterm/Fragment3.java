@@ -19,17 +19,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
 public class Fragment3 extends Fragment implements View.OnClickListener{
-    private TextView textView;
-    private TextView list_city;
+    private ListView list_city;
     private Button button;
     private Button btn_refresh;
     private View view;
     private CityOperator cityOperator;
+    private List<City> cityList;
+    CityAdapter adapter;
 
     public Fragment3() {
     }
@@ -37,23 +39,28 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment3, container, false);
-        cityOperator = new CityOperator(getContext());
         bindView();
         draw();
         return view;
     }
 
     private void bindView(){
-        textView = view.findViewById(R.id.tv);
+        cityOperator = new CityOperator(getContext());
+        btn_refresh = view.findViewById(R.id.btn_refresh);
         list_city = view.findViewById(R.id.list_city);
         button = view.findViewById(R.id.add_city);
-        btn_refresh = view.findViewById(R.id.btn_refresh);
         button.setOnClickListener(this);
         btn_refresh.setOnClickListener(this);
     }
 
     private void draw(){
-        textView.setText("当前位置："+ cityOperator.getIsSelectName());
+        cityList = cityOperator.getItemCity();
+        for(int i = 0; i < cityList.size(); i ++){
+            Log.e("draw", cityList.get(i).getName());
+        }
+        adapter = new CityAdapter(cityList,getContext());
+        list_city = view.findViewById(R.id.list_city);
+        list_city.setAdapter(adapter);
     }
 
     @Override
@@ -74,12 +81,7 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
                     City city2 = new City(string_city, "是");
                     cityOperator.add(city2);
                 }
-                list_city.setText("");
-                List<City> cityList = cityOperator.getAllCity();
-                for(int i = 0; i < cityList.size(); i ++){
-                    list_city.append(cityList.get(i).getName() + " " + cityList.get(i).getIsSelect() + "\n");
-                }
-                textView.setText("当前位置："+ cityOperator.getIsSelectName());
+                draw();
                 break;
             default:
                 break;
@@ -97,13 +99,11 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
                 startActivityForResult(intent,1);
                 break;
             case R.id.btn_refresh:
-                list_city.setText("");
-                List<City> cityList = cityOperator.getAllCity();
-                for(int i = 0; i < cityList.size(); i ++){
-                    list_city.append(cityList.get(i).getName() + " " + cityList.get(i).getIsSelect() + "\n");
-                }
-                textView.setText("当前位置："+ cityOperator.getIsSelectName());
+                draw();
                 break;
+            default:
+                Log.e("dianjiiiiii", "ssssssssssss");
+                draw();
             }
     }
 

@@ -3,9 +3,12 @@ package com.example.a19093.project_endofterm;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.List;
 
 /**
  * Created by Jay on 2015/8/31 0031.
@@ -16,10 +19,12 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     private Fragment1 myFragment1 = null;
     private Fragment2 myFragment2 = null;
     private Fragment3 myFragment3 = null;
+    private List<Fragment> fragments;
 
 
-    public MyFragmentPagerAdapter(FragmentManager fm) {
+    public MyFragmentPagerAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
+
         myFragment1 = new Fragment1();
         myFragment2 = new Fragment2();
         myFragment3 = new Fragment3();
@@ -47,13 +52,16 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case MainActivity.PAGE_ONE:
-                fragment = myFragment1;
+                //fragment = myFragment1;
+                fragment = new Fragment1();
                 break;
             case MainActivity.PAGE_TWO:
-                fragment = myFragment2;
+                //fragment = myFragment2;
+                fragment = new Fragment2();
                 break;
             case MainActivity.PAGE_THREE:
-                fragment = myFragment3;
+                //fragment = myFragment3;
+                fragment =new Fragment3();
                 break;
         }
         return fragment;

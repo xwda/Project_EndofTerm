@@ -29,7 +29,7 @@ public class Add_city extends AppCompatActivity implements View.OnClickListener{
         System.out.println("country="+ Arrays.toString(country));
         //3.实例化数组适配器对象
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1,//系统提供好的布局文件,即TextView控件
+                android.R.layout.simple_list_item_activated_1,//系统提供好的布局文件,即TextView控件
                 country//数据源
         );
         //4.设置当前控件的适配器对象adapter
@@ -60,6 +60,7 @@ public class Add_city extends AppCompatActivity implements View.OnClickListener{
                 break;
             default:
         }
-
     }
+
+
 }

@@ -96,6 +96,7 @@ public class Fragment1 extends Fragment{
     };
 
     public Fragment1() {
+        Log.e("111111111","init");
     }
 
     @Override
@@ -108,6 +109,7 @@ public class Fragment1 extends Fragment{
                 try {
                     CityOperator cityOperator = new CityOperator(getContext());
                     string_city = cityOperator.getIsSelectCity().toString2();
+                    Log.e("11111",string_city);
                     string_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/forecast?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -277,7 +279,7 @@ public class Fragment1 extends Fragment{
         y1 = new float[7];
         y2 = new float[7];
         x = new float [7];
-        for(int i = 0; i < 7; i ++) x[i] = i*(float)0.5;
+        for(int i = 0; i < 7; i ++) x[i] = (float)i;
         y1[0] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(0).getTmp_max());
         y1[1] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(1).getTmp_max());
         y1[2] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(2).getTmp_max());
@@ -299,7 +301,6 @@ public class Fragment1 extends Fragment{
         for(int i = 0; i < 7; i ++){
             value1.add(new PointValue(x[i],y1[i]));
             value2.add(new PointValue(x[i],y2[i]));
-            Log.e("double", x[i] + " " + y1[i] + " " + y2[i]);
         }
         List<Line> lines = new ArrayList<Line>();
         LineChartView chart = view.findViewById(R.id.chart);
