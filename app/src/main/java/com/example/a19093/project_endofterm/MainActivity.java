@@ -75,9 +75,6 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         rb_message = (RadioButton) findViewById(R.id.rb_message);
         rb_better = (RadioButton) findViewById(R.id.rb_better);
         rg_tab_bar.setOnCheckedChangeListener(this);
-
-
-
         textView = findViewById(R.id.textView);
     }
 

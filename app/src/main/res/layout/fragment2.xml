@@ -11,6 +11,19 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_refresh"
+            android:textColor="@color/text_black"
+            android:layout_marginTop="20dp"
+            android:text="24小时预报"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dip"
+            android:background="#696969" />
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"

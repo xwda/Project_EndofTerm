@@ -215,6 +215,39 @@
                                 android:id="@+id/cond_txt_d6"
                                 style="@style/compentToday" />
                         </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tmp_max0"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_max1"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_max2"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_max3"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_max4"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_max5"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_max6"
+                                style="@style/compentToday" />
+                        </LinearLayout>
 
                         <LinearLayout
                             android:layout_marginRight="20dp"
@@ -228,6 +261,39 @@
 
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="20dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tmp_min0"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_min1"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_min2"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_min3"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_min4"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_min5"
+                                style="@style/compentToday" />
+
+                            <TextView
+                                android:id="@+id/tmp_min6"
+                                style="@style/compentToday" />
                         </LinearLayout>
 
                         <LinearLayout

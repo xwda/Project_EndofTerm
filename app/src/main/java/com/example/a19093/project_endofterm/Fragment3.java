@@ -3,6 +3,7 @@ package com.example.a19093.project_endofterm;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,7 +28,6 @@ import java.util.List;
 public class Fragment3 extends Fragment implements View.OnClickListener{
     private ListView list_city;
     private Button button;
-    private Button btn_refresh;
     private View view;
     private CityOperator cityOperator;
     private List<City> cityList;
@@ -46,11 +46,9 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
 
     private void bindView(){
         cityOperator = new CityOperator(getContext());
-        btn_refresh = view.findViewById(R.id.btn_refresh);
         list_city = view.findViewById(R.id.list_city);
         button = view.findViewById(R.id.add_city);
         button.setOnClickListener(this);
-        btn_refresh.setOnClickListener(this);
     }
 
     private void draw(){
@@ -69,6 +67,15 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         switch (resultCode) {
             case 1:
                 String string_city = data.getStringExtra("cityName");
+                boolean flag = false;
+                Resources resources = this.getResources();
+                String[] country = resources.getStringArray(R.array.city_array);
+                for(int i = 1; i < country.length; i ++){
+                    if(country[i].equals(string_city)){
+                        flag = true;
+                    }
+                }
+                if(!flag) break;
                 if(cityOperator.getIsExist(string_city) == 1){
                     City city1 = cityOperator.getIsSelectCity();
                     cityOperator.update(city1);
@@ -97,9 +104,6 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
             case R.id.add_city:
                 Intent intent = new Intent(getActivity(),Add_city.class);
                 startActivityForResult(intent,1);
-                break;
-            case R.id.btn_refresh:
-                draw();
                 break;
             default:
                 Log.e("dianjiiiiii", "ssssssssssss");

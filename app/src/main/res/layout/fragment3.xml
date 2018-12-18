@@ -16,16 +16,10 @@
             android:layout_height="match_parent">
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="320dp"
+                android:layout_height="370dp"
                 android:id="@+id/list_city"
                 >
             </ListView>
-
-            <Button
-                android:id="@+id/btn_refresh"
-                android:text="刷新"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"

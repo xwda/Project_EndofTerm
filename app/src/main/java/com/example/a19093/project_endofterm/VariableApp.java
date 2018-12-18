@@ -10,8 +10,8 @@ import java.util.List;
 
 public class VariableApp extends Application {
     private static VariableApp instance = null;
-    private WeeklyWeatherForecast weeklyWeatherForecast;
-    private HourlyWeatherForecast hourlyWeatherForecast;
+    private volatile WeeklyWeatherForecast weeklyWeatherForecast;
+    private volatile HourlyWeatherForecast hourlyWeatherForecast;
 
     public static VariableApp getInstance(){
         return instance;

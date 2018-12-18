@@ -59,6 +59,8 @@ public class Fragment1 extends Fragment{
     private ImageView img_n0, img_n1,img_n2,img_n3,img_n4,img_n5,img_n6;
     private TextView cond_txt_n0, cond_txt_n1,cond_txt_n2,cond_txt_n3,cond_txt_n4,cond_txt_n5,cond_txt_n6;
     private TextView wind_dir0, wind_dir1,wind_dir2,wind_dir3,wind_dir4,wind_dir5,wind_dir6;
+    private TextView tmp_max0, tmp_max1,tmp_max2,tmp_max3,tmp_max4,tmp_max5,tmp_max6;
+    private TextView tmp_min0, tmp_min1,tmp_min2,tmp_min3,tmp_min4,tmp_min5,tmp_min6;
     private TextView wind_sc0, wind_sc1,wind_sc2,wind_sc3,wind_sc4,wind_sc5,wind_sc6;
     private GetDataService getDataService;
     private WeeklyWeatherForecast weeklyWeatherForecast;
@@ -178,6 +180,20 @@ public class Fragment1 extends Fragment{
         wind_sc4 = view.findViewById(R.id.wind_sc4);
         wind_sc5 = view.findViewById(R.id.wind_sc5);
         wind_sc6 = view.findViewById(R.id.wind_sc6);
+        tmp_max0 = view.findViewById(R.id.tmp_max0);
+        tmp_max1 = view.findViewById(R.id.tmp_max1);
+        tmp_max2 = view.findViewById(R.id.tmp_max2);
+        tmp_max3 = view.findViewById(R.id.tmp_max3);
+        tmp_max4 = view.findViewById(R.id.tmp_max4);
+        tmp_max5 = view.findViewById(R.id.tmp_max5);
+        tmp_max6 = view.findViewById(R.id.tmp_max6);
+        tmp_min0 = view.findViewById(R.id.tmp_min0);
+        tmp_min1 = view.findViewById(R.id.tmp_min1);
+        tmp_min2 = view.findViewById(R.id.tmp_min2);
+        tmp_min3 = view.findViewById(R.id.tmp_min3);
+        tmp_min4 = view.findViewById(R.id.tmp_min4);
+        tmp_min5 = view.findViewById(R.id.tmp_min5);
+        tmp_min6 = view.findViewById(R.id.tmp_min6);
     }
     void draw(){
         if(weeklyWeatherForecast == null)  return ;
@@ -296,6 +312,22 @@ public class Fragment1 extends Fragment{
         y2[5] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(5).getTmp_min());
         y2[6] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(6).getTmp_min());
 
+        tmp_max0.setText((int)y1[0]+"°");
+        tmp_max1.setText((int)y1[1]+"°");
+        tmp_max2.setText((int)y1[2]+"°");
+        tmp_max3.setText((int)y1[3]+"°");
+        tmp_max4.setText((int)y1[4]+"°");
+        tmp_max5.setText((int)y1[5]+"°");
+        tmp_max6.setText((int)y1[6]+"°");
+
+        tmp_min0.setText((int)y2[0]+"°");
+        tmp_min1.setText((int)y2[1]+"°");
+        tmp_min2.setText((int)y2[2]+"°");
+        tmp_min3.setText((int)y2[3]+"°");
+        tmp_min4.setText((int)y2[4]+"°");
+        tmp_min5.setText((int)y2[5]+"°");
+        tmp_min6.setText((int)y2[6]+"°");
+
         value1 = new ArrayList<>();
         value2 = new ArrayList<>();
         for(int i = 0; i < 7; i ++){
@@ -307,11 +339,11 @@ public class Fragment1 extends Fragment{
         Line line1 = new Line(value1).setColor(Color.YELLOW);
         line1.setHasLines(true);
         line1.setHasPoints(true);
-        line1.setHasLabels(true);
+        line1.setHasLabels(false);
         Line line2 = new Line(value2).setColor(Color.BLUE);
         line2.setHasLines(true);
         line2.setHasPoints(true);
-        line2.setHasLabels(true);
+        line2.setHasLabels(false);
         line1.setPointColor(Color.WHITE);
         line2.setPointColor(Color.WHITE);
         line1.setPointRadius(4);

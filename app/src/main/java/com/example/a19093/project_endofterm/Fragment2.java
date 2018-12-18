@@ -41,6 +41,7 @@ public class Fragment2 extends Fragment {
     private TextView uv_type,uv_txt;
     private TextView cw_type,cw_txt;
     private TextView air_type,air_txt;
+    private TextView tv_refresh;
 
     private GetDataService getDataService;
     private HourlyWeatherForecast hourlyWeatherForecast;
@@ -66,13 +67,6 @@ public class Fragment2 extends Fragment {
                     lifestyleForecast = gson.fromJson(string_Lifestyle_forcast,LifestyleForecast.class);
                     if(hourlyWeatherForecast != null && lifestyleForecast != null )
                         draw();
-//                    textView.setText(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getCid() + "\n");
-//                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getLocation() + "\n");
-//                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getCnty() + "\n");
-//                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getLat() + "\n");
-//                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getLon() + "\n");
-//                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getTz() + "\n");
-//                    Toast.makeText(WeatherForecast.this, "HTML代码加载完毕", Toast.LENGTH_SHORT).show();
                     break;
                 default:
                     break;
@@ -107,6 +101,16 @@ public class Fragment2 extends Fragment {
     }
 
     void bindView(){
+        tv_refresh = view.findViewById(R.id.tv_refresh);
+        tv_refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("refresh", "a");
+                Log.e("refresh", string_city);
+                draw();
+            }
+        });
+
         time0 = view.findViewById(R.id.time0);
         time1 = view.findViewById(R.id.time1);
         time2 = view.findViewById(R.id.time2);
@@ -256,4 +260,18 @@ public class Fragment2 extends Fragment {
 
 
     }
+
+    @Override
+    public void onResume (){
+        super.onResume();
+        Log.e("onResume", "sssssssssss");
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.e("onPause","pppppppppp");
+    }
+
+
 }
