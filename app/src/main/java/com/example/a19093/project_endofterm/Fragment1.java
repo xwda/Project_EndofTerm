@@ -65,6 +65,7 @@ public class Fragment1 extends Fragment{
     private GetDataService getDataService;
     private WeeklyWeatherForecast weeklyWeatherForecast;
     private volatile String string_weather_forcast;
+    private TextView tv_updata;
     private TextView textView;
     private float[] y1;
     private float[] y2;
@@ -79,17 +80,7 @@ public class Fragment1 extends Fragment{
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case 0x001:
-                    Gson gson = new Gson();
-                    weeklyWeatherForecast = gson.fromJson(string_weather_forcast,WeeklyWeatherForecast.class);
-                    if(weeklyWeatherForecast != null)
-                        draw();
-//                    textView.setText(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getCid() + "\n");
-//                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getLocation() + "\n");
-//                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getCnty() + "\n");
-//                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getLat() + "\n");
-//                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getLon() + "\n");
-//                    textView.append(weeklyWeatherForecast.getHeWeather6().get(0).getBasic().getTz() + "\n");
-//                    Toast.makeText(WeatherForecast.this, "HTML代码加载完毕", Toast.LENGTH_SHORT).show();
+                    parseData();
                     break;
                 default:
                     break;
@@ -98,31 +89,18 @@ public class Fragment1 extends Fragment{
     };
 
     public Fragment1() {
-        Log.e("111111111","init");
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment1, container, false);
         bindView();
-
-        new Thread() {
-            public void run() {
-                try {
-                    CityOperator cityOperator = new CityOperator(getContext());
-                    string_city = cityOperator.getIsSelectCity().toString2();
-                    Log.e("11111",string_city);
-                    string_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/forecast?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                handler.sendEmptyMessage(0x001);
-            };
-        }.start();
+        getData();
         return view;
     }
 
-    void bindView(){
+    private void bindView(){
+        tv_updata = view.findViewById(R.id.tv_update);
         textView = view.findViewById(R.id.textView);
         day0 = view.findViewById(R.id.day0);
         day1 = view.findViewById(R.id.day1);
@@ -195,18 +173,27 @@ public class Fragment1 extends Fragment{
         tmp_min5 = view.findViewById(R.id.tmp_min5);
         tmp_min6 = view.findViewById(R.id.tmp_min6);
     }
-    void draw(){
-        if(weeklyWeatherForecast == null)  return ;
+    private void draw(){
+       // if(weeklyWeatherForecast == null)  return ;
 //        getDataService = GetDataService.getIntence();
 //        weeklyWeatherForecast = getDataService.getWeeklyWeatherForecast();
         //int drawableId = getResources().getIdentifier("@drable/x" + weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(0).getCond_code_d(), "drawable", getPackageName());
         //img_d0.setBackgroundDrawable(drawableId);
-        SimpleDateFormat std1 = new SimpleDateFormat("yyyy-MM-dd");
-        SimpleDateFormat std2 = new SimpleDateFormat("EEEE");
-        SimpleDateFormat std3 = new SimpleDateFormat("MM/dd");
-        Date d;
-        String str;
+
+
+
+
         try {
+            SimpleDateFormat sd1 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+            SimpleDateFormat sd2 = new SimpleDateFormat("hh:mm");
+            Date upd = sd1.parse(weeklyWeatherForecast.getHeWeather6().get(0).getUpdate().getLoc());
+            tv_updata.setText(sd2.format(upd)+" 发布");
+
+            SimpleDateFormat std1 = new SimpleDateFormat("yyyy-MM-dd");
+            SimpleDateFormat std2 = new SimpleDateFormat("EEEE");
+            SimpleDateFormat std3 = new SimpleDateFormat("MM/dd");
+            Date d;
+            String str;
             String xu = weeklyWeatherForecast.toString();
             Log.e("xu", xu);
             String string_date0 = weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(0).getDate();
@@ -240,8 +227,6 @@ public class Fragment1 extends Fragment{
         } catch (ParseException e) {
             e.printStackTrace();
         }
-
-
 
         setImgView(img_d0,0,0);
         setImgView(img_d1,1,0);
@@ -312,21 +297,22 @@ public class Fragment1 extends Fragment{
         y2[5] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(5).getTmp_min());
         y2[6] = Integer.parseInt(weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(6).getTmp_min());
 
-        tmp_max0.setText((int)y1[0]+"°");
-        tmp_max1.setText((int)y1[1]+"°");
-        tmp_max2.setText((int)y1[2]+"°");
-        tmp_max3.setText((int)y1[3]+"°");
-        tmp_max4.setText((int)y1[4]+"°");
-        tmp_max5.setText((int)y1[5]+"°");
-        tmp_max6.setText((int)y1[6]+"°");
+        String degree = "℃";
+        tmp_max0.setText((int)y1[0]+degree);
+        tmp_max1.setText((int)y1[1]+degree);
+        tmp_max2.setText((int)y1[2]+degree);
+        tmp_max3.setText((int)y1[3]+degree);
+        tmp_max4.setText((int)y1[4]+degree);
+        tmp_max5.setText((int)y1[5]+degree);
+        tmp_max6.setText((int)y1[6]+degree);
 
-        tmp_min0.setText((int)y2[0]+"°");
-        tmp_min1.setText((int)y2[1]+"°");
-        tmp_min2.setText((int)y2[2]+"°");
-        tmp_min3.setText((int)y2[3]+"°");
-        tmp_min4.setText((int)y2[4]+"°");
-        tmp_min5.setText((int)y2[5]+"°");
-        tmp_min6.setText((int)y2[6]+"°");
+        tmp_min0.setText((int)y2[0]+degree);
+        tmp_min1.setText((int)y2[1]+degree);
+        tmp_min2.setText((int)y2[2]+degree);
+        tmp_min3.setText((int)y2[3]+degree);
+        tmp_min4.setText((int)y2[4]+degree);
+        tmp_min5.setText((int)y2[5]+degree);
+        tmp_min6.setText((int)y2[6]+degree);
 
         value1 = new ArrayList<>();
         value2 = new ArrayList<>();
@@ -363,14 +349,31 @@ public class Fragment1 extends Fragment{
         chart.setLineChartData(data);
         chart.setInteractive(false);
     }
-
+    private void getData(){
+        new Thread() {
+            public void run() {
+                try {
+                    CityOperator cityOperator = new CityOperator(getContext());
+                    string_city = cityOperator.getIsSelectCity().toString2();
+                    string_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/forecast?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x001);
+            };
+        }.start();
+    }
+    private void parseData(){
+        Gson gson = new Gson();
+        weeklyWeatherForecast = gson.fromJson(string_weather_forcast,WeeklyWeatherForecast.class);
+        if(weeklyWeatherForecast != null)
+            draw();
+    }
     public int getResource(String imageName){
         Context ctx=getActivity().getBaseContext();
         int resId = getResources().getIdentifier(imageName, "drawable", ctx.getPackageName());
-        //如果没有在"mipmap"下找到imageName,将会返回0
         return resId;
     }
-
     private void setImgView(ImageView ig,int i, int flag){
 
         if(flag == 0){

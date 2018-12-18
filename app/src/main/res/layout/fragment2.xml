@@ -12,9 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <TextView
+            android:id="@+id/tv_update"
+            android:gravity="right"
+            android:textColor="@color/text_while"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+        <TextView
             android:id="@+id/tv_refresh"
             android:textColor="@color/text_black"
-            android:layout_marginTop="20dp"
             android:text="24小时预报"
             android:textSize="18dp"
             android:gravity="center"

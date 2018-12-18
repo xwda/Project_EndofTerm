@@ -44,23 +44,6 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         return view;
     }
 
-    private void bindView(){
-        cityOperator = new CityOperator(getContext());
-        list_city = view.findViewById(R.id.list_city);
-        button = view.findViewById(R.id.add_city);
-        button.setOnClickListener(this);
-    }
-
-    private void draw(){
-        cityList = cityOperator.getItemCity();
-        for(int i = 0; i < cityList.size(); i ++){
-            Log.e("draw", cityList.get(i).getName());
-        }
-        adapter = new CityAdapter(cityList,getContext());
-        list_city = view.findViewById(R.id.list_city);
-        list_city.setAdapter(adapter);
-    }
-
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -96,8 +79,6 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
 
     }
 
-
-
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -105,10 +86,22 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
                 Intent intent = new Intent(getActivity(),Add_city.class);
                 startActivityForResult(intent,1);
                 break;
-            default:
-                Log.e("dianjiiiiii", "ssssssssssss");
-                draw();
-            }
+        }
     }
+
+    private void bindView(){
+        cityOperator = new CityOperator(getContext());
+        list_city = view.findViewById(R.id.list_city);
+        button = view.findViewById(R.id.add_city);
+        button.setOnClickListener(this);
+    }
+    private void draw(){
+        cityList = cityOperator.getItemCity();
+        adapter = new CityAdapter(cityList,getContext());
+        list_city = view.findViewById(R.id.list_city);
+        list_city.setAdapter(adapter);
+    }
+
+
 
 }

@@ -171,10 +171,4 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         //此处设置位置窗体大小，我这里设置为了手机屏幕宽度的3/4
         //dialog.getWindow().setLayout((ScreenUtils.getScreenWidth(this)/4*3),LinearLayout.LayoutParams.WRAP_CONTENT);
     }
-
-
-
-
-
-
 }

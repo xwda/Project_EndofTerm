@@ -43,7 +43,6 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        System.out.println("position Destory" + position);
         super.destroyItem(container, position, object);
     }
 
@@ -52,16 +51,13 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
         Fragment fragment = null;
         switch (position) {
             case MainActivity.PAGE_ONE:
-                //fragment = myFragment1;
-                fragment = new Fragment1();
+                fragment = myFragment1;
                 break;
             case MainActivity.PAGE_TWO:
-                //fragment = myFragment2;
-                fragment = new Fragment2();
+                fragment = myFragment2;
                 break;
             case MainActivity.PAGE_THREE:
-                //fragment = myFragment3;
-                fragment =new Fragment3();
+                fragment = myFragment3;
                 break;
         }
         return fragment;

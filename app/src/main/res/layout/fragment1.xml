@@ -12,8 +12,15 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_update"
+            android:gravity="right"
+            android:textColor="@color/text_while"
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

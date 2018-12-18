@@ -26,6 +26,10 @@ import com.example.a19093.project_endofterm.Request.LifestyleForecast;
 import com.example.a19093.project_endofterm.Request.WeeklyWeatherForecast;
 import com.google.gson.Gson;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Fragment2 extends Fragment {
 
     private TextView time0,time1,time2,time3,time4,time5,time6,time7;
@@ -42,6 +46,7 @@ public class Fragment2 extends Fragment {
     private TextView cw_type,cw_txt;
     private TextView air_type,air_txt;
     private TextView tv_refresh;
+    private TextView tv_update;
 
     private GetDataService getDataService;
     private HourlyWeatherForecast hourlyWeatherForecast;
@@ -54,19 +59,12 @@ public class Fragment2 extends Fragment {
     String string_city;
     View view;
 
-
-
-
     @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         public void handleMessage(android.os.Message msg) {
             switch (msg.what) {
                 case 0x001:
-                    Gson gson = new Gson();
-                    hourlyWeatherForecast = gson.fromJson(string_hourly_weather_forcast,HourlyWeatherForecast.class);
-                    lifestyleForecast = gson.fromJson(string_Lifestyle_forcast,LifestyleForecast.class);
-                    if(hourlyWeatherForecast != null && lifestyleForecast != null )
-                        draw();
+                    parseData();
                     break;
                 default:
                     break;
@@ -76,31 +74,27 @@ public class Fragment2 extends Fragment {
 
 
     public Fragment2() {
-        Log.e("22222","init");
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment2, container, false);
         bindView();
-        new Thread() {
-            public void run() {
-                try {
-                    CityOperator cityOperator = new CityOperator(getContext());
-                    string_city = cityOperator.getIsSelectCity().toString2();
-                    Log.e("222222",string_city);
-                    string_hourly_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/hourly?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
-                    string_Lifestyle_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/lifestyle?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                handler.sendEmptyMessage(0x001);
-            };
-        }.start();
+        getData();
         return view;
     }
 
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser){
+            getData();
+        }
+    }
+
     void bindView(){
+        tv_update = view.findViewById(R.id.tv_update);
         tv_refresh = view.findViewById(R.id.tv_refresh);
         tv_refresh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,9 +167,16 @@ public class Fragment2 extends Fragment {
         air_type = view.findViewById(R.id.air_type);
         air_txt = view.findViewById(R.id.air_txt);
     }
-
     void draw(){
         if(hourlyWeatherForecast == null || lifestyleForecast == null) return ;
+        try{
+            SimpleDateFormat sd1 = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+            SimpleDateFormat sd2 = new SimpleDateFormat("hh:mm");
+            Date upd = sd1.parse(hourlyWeatherForecast.getHeWeather6().get(0).getUpdate().getLoc());
+            tv_update.setText(sd2.format(upd)+" 发布");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         String tm;
         String[] s;
         tm = hourlyWeatherForecast.getHeWeather6().get(0).getHourly().get(0).getTime();
@@ -260,18 +261,29 @@ public class Fragment2 extends Fragment {
 
 
     }
-
-    @Override
-    public void onResume (){
-        super.onResume();
-        Log.e("onResume", "sssssssssss");
+    void getData(){
+        new Thread() {
+            public void run() {
+                try {
+                    CityOperator cityOperator = new CityOperator(getContext());
+                    string_city = cityOperator.getIsSelectCity().toString2();
+                    string_hourly_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/hourly?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
+                    string_Lifestyle_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/lifestyle?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                handler.sendEmptyMessage(0x001);
+            };
+        }.start();
+    }
+    void parseData(){
+        Gson gson = new Gson();
+        hourlyWeatherForecast = gson.fromJson(string_hourly_weather_forcast,HourlyWeatherForecast.class);
+        lifestyleForecast = gson.fromJson(string_Lifestyle_forcast,LifestyleForecast.class);
+        if(hourlyWeatherForecast != null && lifestyleForecast != null )
+            draw();
     }
 
-    @Override
-    public void onPause(){
-        super.onPause();
-        Log.e("onPause","pppppppppp");
-    }
 
 
 }
