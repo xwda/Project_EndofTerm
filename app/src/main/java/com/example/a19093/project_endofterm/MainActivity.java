@@ -64,8 +64,8 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         vpager = (ViewPager) findViewById(R.id.vpager);
         vpager.setAdapter(mAdapter);
         vpager.addOnPageChangeListener(this);
-        rb_channel.setChecked(true);
-        vpager.setCurrentItem(0);
+        rb_message.setChecked(true);
+        vpager.setCurrentItem(1);
         CityOperator cityOperator = new CityOperator(this);
     }
 
@@ -157,16 +157,13 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
                 finish();
             }
         });
-
-
-
         btn_agree_high_opion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-
+        dialog.setCancelable(false);
         dialog.show();
         //此处设置位置窗体大小，我这里设置为了手机屏幕宽度的3/4
         //dialog.getWindow().setLayout((ScreenUtils.getScreenWidth(this)/4*3),LinearLayout.LayoutParams.WRAP_CONTENT);
