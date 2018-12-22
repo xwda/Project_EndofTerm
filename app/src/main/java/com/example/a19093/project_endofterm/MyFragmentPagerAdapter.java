@@ -3,16 +3,10 @@ package com.example.a19093.project_endofterm;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.view.MenuItem;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by Jay on 2015/8/31 0031.
- */
 public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     private final int PAGER_COUNT = 3;

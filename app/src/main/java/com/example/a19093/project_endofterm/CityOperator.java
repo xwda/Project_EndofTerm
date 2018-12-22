@@ -21,60 +21,39 @@ public class CityOperator {
 
     public void add(City city) {
         try{
-//            db.execSQL("insert into CitySQ values(?,?)",
-//                    new Object[] { city.getName(), city.getIsSelect()});
             ContentValues cValue = new ContentValues();
             cValue.put("name",city.getName());
             cValue.put("isSelect",city.getIsSelect());
-            db.insert("CitySQ",null,cValue);
+            db.insert("CitySQ",null, cValue);
         }catch (Exception e){
+            e.printStackTrace();
         }
     }
 
     public void update(City city) {
         try {
+            ContentValues cValue = new ContentValues();
             if (city.getIsSelect().equals("否")) {
-                ContentValues cValue = new ContentValues();
                 cValue.put("isSelect", "是");
-                String whereClause = "name=?";
-                String[] whereArgs = {city.getName()};
-                db.update("CitySQ", cValue, whereClause, whereArgs);
-
             } else {
-                ContentValues cValue = new ContentValues();
                 cValue.put("isSelect", "否");
-                String whereClause = "name=?";
-                String[] whereArgs = {city.getName()};
-                db.update("CitySQ", cValue, whereClause, whereArgs);
             }
+            String whereClause = "name=?";
+            String[] whereArgs = {city.getName()};
+            db.update("CitySQ", cValue, whereClause, whereArgs);
         }catch (Exception e){
-            Log.e("eeeee", e.toString());
+            e.printStackTrace();
         }
     }
 
     public void delete(String name) {
-        Log.e("delete", "begin");
         try{
             db.execSQL("delete from CitySQ where name=?", new String[] { name });
-            Log.e("delete", "success");
         }catch(Exception e){
-            Log.e("delete", e.toString());
+            e.printStackTrace();
         }
-
     }
 
-    public List<City> getAllCity() {
-        ArrayList<City> citys = new ArrayList<City>();
-        Cursor c = db.rawQuery("select * from CitySQ order by isSelect", null);
-        while (c.moveToNext()) {
-            City city = new City();
-            city.setName(c.getString(0));
-            city.setIsSelect(c.getString(1));
-            citys.add(city);
-        }
-        c.close();
-        return citys;
-    }
     public List<City> getItemCity() {
         ArrayList<City> citys = new ArrayList<City>();
         Cursor c = db.rawQuery("select * from CitySQ order by isSelect desc", null);
@@ -86,31 +65,6 @@ public class CityOperator {
         }
         c.close();
         return citys;
-    }
-    public boolean CheckIsDataAlreadyInDBorNot(String name) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String Query = "Select * from CitySQ where name =?";
-        Cursor cursor = db.rawQuery(Query, new String[] { name });
-        if (cursor.getCount() > 0) {
-            cursor.close();
-            return true;
-        }
-        cursor.close();
-        return false;
-    }
-
-    public String getIsSelectName() {
-        Cursor c = db.rawQuery("select * from CitySQ", null);
-        String s1 = "",s2 = "";
-        while (c.moveToNext()) {
-            s1 = c.getString(0);
-            s2 = c.getString(1);
-            if(s2.equals("是")){
-                break;
-            }
-        }
-        c.close();
-        return s1;
     }
 
     public City getIsSelectCity() {
@@ -135,6 +89,7 @@ public class CityOperator {
         }
         return city;
     }
+
     public int getIsExist(String name){
         Cursor c = db.rawQuery("select * from CitySQ", null);
         String s1,s2;

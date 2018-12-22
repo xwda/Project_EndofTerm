@@ -1,37 +1,17 @@
 package com.example.a19093.project_endofterm;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
-import android.provider.Settings;
-import android.speech.tts.TextToSpeech;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
-
 import com.example.a19093.project_endofterm.Request.HourlyWeatherForecast;
 import com.example.a19093.project_endofterm.Request.LifestyleForecast;
-import com.example.a19093.project_endofterm.Request.WeeklyWeatherForecast;
 import com.google.gson.Gson;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -52,17 +32,12 @@ public class Fragment2 extends Fragment {
     private TextView uv_type,uv_txt;
     private TextView cw_type,cw_txt;
     private TextView air_type,air_txt;
-    private TextView tv_refresh;
     private TextView tv_update;
 
-    private GetDataService getDataService;
     private HourlyWeatherForecast hourlyWeatherForecast;
     private LifestyleForecast lifestyleForecast;
     private volatile String string_hourly_weather_forcast;
     private volatile String string_Lifestyle_forcast;
-    private TextView button;
-    private TextView textView;
-    VariableApp variableApp;
     String string_city;
     View view;
 
@@ -80,12 +55,10 @@ public class Fragment2 extends Fragment {
     };
 
 
-    public Fragment2() {
-
-    }
+    public Fragment2() { }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment2, container, false);
         bindView();
         getData();
@@ -96,23 +69,12 @@ public class Fragment2 extends Fragment {
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser){
-           // checkNet();
             getData();
         }
     }
 
     void bindView(){
         tv_update = view.findViewById(R.id.tv_update);
-        tv_refresh = view.findViewById(R.id.tv_refresh);
-        tv_refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("refresh", "a");
-                Log.e("refresh", string_city);
-                draw();
-            }
-        });
-
         time0 = view.findViewById(R.id.time0);
         time1 = view.findViewById(R.id.time1);
         time2 = view.findViewById(R.id.time2);
@@ -175,6 +137,7 @@ public class Fragment2 extends Fragment {
         air_type = view.findViewById(R.id.air_type);
         air_txt = view.findViewById(R.id.air_txt);
     }
+
     void draw(){
         if(hourlyWeatherForecast == null || lifestyleForecast == null) return ;
         try{
@@ -266,9 +229,8 @@ public class Fragment2 extends Fragment {
         cw_txt.setText(lifestyleForecast.getHeWeather6().get(0).getLifestyle().get(6).getTxt());
         air_type.setText(lifestyleForecast.getHeWeather6().get(0).getLifestyle().get(7).getBrf());
         air_txt.setText(lifestyleForecast.getHeWeather6().get(0).getLifestyle().get(7).getTxt());
-
-
     }
+
     void getData(){
         new Thread() {
             public void run() {
@@ -284,67 +246,11 @@ public class Fragment2 extends Fragment {
             };
         }.start();
     }
+
     void parseData(){
         Gson gson = new Gson();
         hourlyWeatherForecast = gson.fromJson(string_hourly_weather_forcast,HourlyWeatherForecast.class);
         lifestyleForecast = gson.fromJson(string_Lifestyle_forcast,LifestyleForecast.class);
-        if(hourlyWeatherForecast != null && lifestyleForecast != null )
-            draw();
+        draw();
     }
-
-
-
-
-    private void checkNet(){
-        if(!isNetworkConnected()){
-            showDialog();
-        }
-    }
-
-    /**
-     * 获取当前手机的网络状态
-     *
-     * @return
-     */
-    private boolean isNetworkConnected() {
-
-        ConnectivityManager manager = (ConnectivityManager)getActivity().getSystemService(getContext().CONNECTIVITY_SERVICE);
-        NetworkInfo info = manager.getActiveNetworkInfo();
-        return (info != null && info.isConnected());
-
-    }
-
-    private void showDialog(){
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.my_dialog,null,false);
-        final AlertDialog dialog = new AlertDialog.Builder(getContext()).setView(view).create();
-        getActivity().getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        Button btn_cancel_high_opion = view.findViewById(R.id.btn_cancel_high_opion);
-        Button btn_agree_high_opion = view.findViewById(R.id.btn_agree_high_opion);
-
-        btn_cancel_high_opion.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Intent intent = new Intent();
-                //  类名一定要包含包名(这种显示意图不是很好，因为不同的系统可能包名，类名都不同，因此最好采用隐式意图进行跳转)
-                // intent.setClassName("com.android.phone",
-                // "com.android.phone.MiuiMobileNetworkSettings");
-                Intent intent = new Intent();
-                intent.setAction(Settings.ACTION_DATA_ROAMING_SETTINGS);
-                //startActivity(intent);
-                startActivityForResult(intent, 0);  // 如果在设置完成后需要再次进行操作，可以重写操作代码，在这里不再重写
-            }
-        });
-        btn_agree_high_opion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-            }
-        });
-        dialog.setCancelable(false);
-        dialog.show();
-        //此处设置位置窗体大小，我这里设置为了手机屏幕宽度的3/4
-        //dialog.getWindow().setLayout((ScreenUtils.getScreenWidth(this)/4*3),LinearLayout.LayoutParams.WRAP_CONTENT);
-    }
-
-
-
 }

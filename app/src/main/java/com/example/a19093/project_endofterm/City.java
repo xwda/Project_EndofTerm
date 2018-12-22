@@ -15,9 +15,11 @@ public class City {
         this.name = name;
         this.isSelect= isSelect;
     }
+
     public String getName() {
         return name;
     }
+
     public String getIsSelect() {
         return isSelect;
     }
@@ -25,20 +27,15 @@ public class City {
     public void setName(String name){
         this.name = name;
     }
+
     public void setIsSelect(String isSelect){
         this.isSelect = isSelect;
     }
 
-
-    public String toString1(){
-        return name;
-    }
     public String toString2(){
         String[] s;
         s = name.split(" ");
         return s[0] + "," + s[1];
     }
-    public String toString3(){
-        return name + " " + isSelect;
-    }
+
 }

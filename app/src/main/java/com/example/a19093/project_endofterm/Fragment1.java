@@ -1,33 +1,19 @@
 package com.example.a19093.project_endofterm;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Color;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Handler;
-import android.provider.ContactsContract;
-import android.provider.ContactsContract.Contacts;
-import android.provider.Settings;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import com.example.a19093.project_endofterm.Request.WeeklyWeatherForecast;
 import com.google.gson.Gson;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,29 +21,16 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import interfaces.heweather.com.interfacesmodule.bean.Lang;
+import interfaces.heweather.com.interfacesmodule.bean.Unit;
+import interfaces.heweather.com.interfacesmodule.view.HeWeather;
 import lecho.lib.hellocharts.model.Line;
 import lecho.lib.hellocharts.model.LineChartData;
 import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.view.Chart;
-import lecho.lib.hellocharts.view.LineChartView;
-
-import static android.provider.ContactsContract.Contacts.*;
-import lecho.lib.hellocharts.animation.ChartAnimationListener;
-import lecho.lib.hellocharts.gesture.ContainerScrollType;
-import lecho.lib.hellocharts.gesture.ZoomType;
-import lecho.lib.hellocharts.listener.LineChartOnValueSelectListener;
-import lecho.lib.hellocharts.model.Axis;
-import lecho.lib.hellocharts.model.Line;
-import lecho.lib.hellocharts.model.LineChartData;
-import lecho.lib.hellocharts.model.PointValue;
-import lecho.lib.hellocharts.model.ValueShape;
-import lecho.lib.hellocharts.model.Viewport;
-import lecho.lib.hellocharts.util.ChartUtils;
 import lecho.lib.hellocharts.view.LineChartView;
 
 public class Fragment1 extends Fragment{
-    View view;
-
+    private View view;
     private TextView day0, day1,day2,day3,day4,day5,day6;
     private TextView date0, date1,date2,date3,date4,date5,date6;
     private ImageView img_d0, img_d1,img_d2,img_d3,img_d4,img_d5,img_d6;
@@ -68,17 +41,14 @@ public class Fragment1 extends Fragment{
     private TextView tmp_max0, tmp_max1,tmp_max2,tmp_max3,tmp_max4,tmp_max5,tmp_max6;
     private TextView tmp_min0, tmp_min1,tmp_min2,tmp_min3,tmp_min4,tmp_min5,tmp_min6;
     private TextView wind_sc0, wind_sc1,wind_sc2,wind_sc3,wind_sc4,wind_sc5,wind_sc6;
-    private GetDataService getDataService;
     private WeeklyWeatherForecast weeklyWeatherForecast;
     private volatile String string_weather_forcast;
     private TextView tv_updata;
-    private TextView textView;
     private float[] y1;
     private float[] y2;
     private float[] x;
     private List<PointValue> value1;
     private List<PointValue> value2;
-    VariableApp variableApp;
     String string_city;
 
     @SuppressLint("HandlerLeak")
@@ -94,8 +64,7 @@ public class Fragment1 extends Fragment{
         };
     };
 
-    public Fragment1() {
-    }
+    public Fragment1() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -107,7 +76,6 @@ public class Fragment1 extends Fragment{
 
     private void bindView(){
         tv_updata = view.findViewById(R.id.tv_update);
-        textView = view.findViewById(R.id.textView);
         day0 = view.findViewById(R.id.day0);
         day1 = view.findViewById(R.id.day1);
         day2 = view.findViewById(R.id.day2);
@@ -179,16 +147,8 @@ public class Fragment1 extends Fragment{
         tmp_min5 = view.findViewById(R.id.tmp_min5);
         tmp_min6 = view.findViewById(R.id.tmp_min6);
     }
+
     private void draw(){
-       // if(weeklyWeatherForecast == null)  return ;
-//        getDataService = GetDataService.getIntence();
-//        weeklyWeatherForecast = getDataService.getWeeklyWeatherForecast();
-        //int drawableId = getResources().getIdentifier("@drable/x" + weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(0).getCond_code_d(), "drawable", getPackageName());
-        //img_d0.setBackgroundDrawable(drawableId);
-
-
-
-
         try {
             SimpleDateFormat sd1 = new SimpleDateFormat("yyyy-MM-dd HH:mm");
             SimpleDateFormat sd2 = new SimpleDateFormat("HH:mm");
@@ -199,9 +159,6 @@ public class Fragment1 extends Fragment{
             SimpleDateFormat std2 = new SimpleDateFormat("EEEE");
             SimpleDateFormat std3 = new SimpleDateFormat("MM/dd");
             Date d;
-            String str;
-            String xu = weeklyWeatherForecast.toString();
-            Log.e("xu", xu);
             String string_date0 = weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(0).getDate();
             d = std1.parse(string_date0);
             date0.setText(std3.format(d));
@@ -326,7 +283,7 @@ public class Fragment1 extends Fragment{
             value1.add(new PointValue(x[i],y1[i]));
             value2.add(new PointValue(x[i],y2[i]));
         }
-        List<Line> lines = new ArrayList<Line>();
+        List<Line> lines = new ArrayList<>();
         LineChartView chart = view.findViewById(R.id.chart);
         Line line1 = new Line(value1).setColor(Color.YELLOW);
         line1.setHasLines(true);
@@ -355,18 +312,21 @@ public class Fragment1 extends Fragment{
         chart.setLineChartData(data);
         chart.setInteractive(false);
     }
+
     private void getData(){
         new Thread() {
             public void run() {
                 try {
                     CityOperator cityOperator = new CityOperator(getContext());
                     string_city = cityOperator.getIsSelectCity().toString2();
-                    string_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/forecast?location=" + string_city + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
+                    string_weather_forcast = GetData.getJson("https://free-api.heweather.com/s6/weather/forecast?location="
+                            + string_city
+                            + "&key=2d7b37b322a04de1ab17fca5f2e0f0ea");
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
                 handler.sendEmptyMessage(0x001);
-            };
+            }
         }.start();
     }
 
@@ -374,7 +334,6 @@ public class Fragment1 extends Fragment{
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
         if (isVisibleToUser){
-            checkNet();
             getData();
         }
     }
@@ -386,12 +345,10 @@ public class Fragment1 extends Fragment{
             draw();
     }
     public int getResource(String imageName){
-        Context ctx=getActivity().getBaseContext();
-        int resId = getResources().getIdentifier(imageName, "drawable", ctx.getPackageName());
-        return resId;
+        Context ctx=Objects.requireNonNull(getActivity()).getBaseContext();
+        return getResources().getIdentifier(imageName, "drawable", ctx.getPackageName());
     }
     private void setImgView(ImageView ig,int i, int flag){
-
         if(flag == 0){
             String img1 =  "x" + weeklyWeatherForecast.getHeWeather6().get(0).getDaily_forecast().get(i).getCond_code_d();
             ig.setImageResource(getResource(img1));
@@ -407,55 +364,5 @@ public class Fragment1 extends Fragment{
             }
         }
 
-    }
-
-    private void checkNet(){
-        if(!isNetworkConnected()){
-            showDialog();
-        }
-    }
-
-    /**
-     * 获取当前手机的网络状态
-     *
-     * @return
-     */
-    private boolean isNetworkConnected() {
-
-        ConnectivityManager manager = (ConnectivityManager)getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo info = manager.getActiveNetworkInfo();
-        return (info != null && info.isConnected());
-
-    }
-
-    private void showDialog(){
-        View view = LayoutInflater.from(getContext()).inflate(R.layout.my_dialog,null,false);
-        final AlertDialog dialog = new AlertDialog.Builder(getContext()).setView(view).create();
-        getActivity().getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        Button btn_cancel_high_opion = view.findViewById(R.id.btn_cancel_high_opion);
-        Button btn_agree_high_opion = view.findViewById(R.id.btn_agree_high_opion);
-
-        btn_cancel_high_opion.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Intent intent = new Intent();
-                //  类名一定要包含包名(这种显示意图不是很好，因为不同的系统可能包名，类名都不同，因此最好采用隐式意图进行跳转)
-                // intent.setClassName("com.android.phone",
-                // "com.android.phone.MiuiMobileNetworkSettings");
-                Intent intent = new Intent();
-                intent.setAction(Settings.ACTION_DATA_ROAMING_SETTINGS);
-                //startActivity(intent);
-                startActivityForResult(intent, 0);  // 如果在设置完成后需要再次进行操作，可以重写操作代码，在这里不再重写
-            }
-        });
-        btn_agree_high_opion.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-            }
-        });
-        dialog.setCancelable(false);
-        dialog.show();
-        //此处设置位置窗体大小，我这里设置为了手机屏幕宽度的3/4
-        //dialog.getWindow().setLayout((ScreenUtils.getScreenWidth(this)/4*3),LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 }

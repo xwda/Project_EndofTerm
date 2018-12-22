@@ -26,20 +26,16 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener,
         ViewPager.OnPageChangeListener {
 
-    //UI Objects
-    private TextView txt_topbar;
     private RadioGroup rg_tab_bar;
-    private RadioButton rb_channel;
-    private RadioButton rb_message;
-    private RadioButton rb_better;
-    private RadioButton rb_setting;
+    private RadioButton rb0;
+    private RadioButton rb1;
+    private RadioButton rb2;
     private ViewPager vpager;
     private TextView textView;
 
     private MyFragmentPagerAdapter mAdapter;
     private List<Fragment> fragments;
 
-    //几个代表页面的常量
     public static final int PAGE_ONE = 0;
     public static final int PAGE_TWO = 1;
     public static final int PAGE_THREE = 2;
@@ -61,19 +57,18 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         fragments.add(f2);
         fragments.add(f3);
         mAdapter = new MyFragmentPagerAdapter(getSupportFragmentManager(),fragments);
-        vpager = (ViewPager) findViewById(R.id.vpager);
+        vpager = findViewById(R.id.vpager);
         vpager.setAdapter(mAdapter);
         vpager.addOnPageChangeListener(this);
-        rb_message.setChecked(true);
+        rb1.setChecked(true);
         vpager.setCurrentItem(1);
-        CityOperator cityOperator = new CityOperator(this);
     }
 
     private void bindViews() {
-        rg_tab_bar = (RadioGroup) findViewById(R.id.rg_tab_bar);
-        rb_channel = (RadioButton) findViewById(R.id.rb_channel);
-        rb_message = (RadioButton) findViewById(R.id.rb_message);
-        rb_better = (RadioButton) findViewById(R.id.rb_better);
+        rg_tab_bar = findViewById(R.id.rg_tab_bar);
+        rb0 =  findViewById(R.id.rb0);
+        rb1 = findViewById(R.id.rb1);
+        rb2 =  findViewById(R.id.rb2);
         rg_tab_bar.setOnCheckedChangeListener(this);
         textView = findViewById(R.id.textView);
     }
@@ -81,29 +76,29 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (checkedId) {
-            case R.id.rb_channel:
+            case R.id.rb0:
                 vpager.setCurrentItem(PAGE_ONE);
                 textView.setText("多天预报");
                 break;
-            case R.id.rb_message:
+            case R.id.rb1:
                 vpager.setCurrentItem(PAGE_TWO);
                 textView.setText("今日详情");
                 break;
-            case R.id.rb_better:
+            case R.id.rb2:
                 vpager.setCurrentItem(PAGE_THREE);
                 textView.setText("设定位置");
                 break;
         }
     }
 
-
-    //重写ViewPager页面切换的处理方法
     @Override
-    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+    public void onPageScrolled(int i, float v, int i1) {
+
     }
 
     @Override
-    public void onPageSelected(int position) {
+    public void onPageSelected(int i) {
+
     }
 
     @Override
@@ -112,23 +107,18 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         if (state == 2) {
             switch (vpager.getCurrentItem()) {
                 case PAGE_ONE:
-                    rb_channel.setChecked(true);
+                    rb0.setChecked(true);
                     break;
                 case PAGE_TWO:
-                    rb_message.setChecked(true);
+                    rb1.setChecked(true);
                     break;
                 case PAGE_THREE:
-                    rb_better.setChecked(true);
+                    rb2.setChecked(true);
                     break;
             }
         }
     }
 
-    /**
-     * 获取当前手机的网络状态
-     *
-     * @return
-     */
     private boolean isNetworkConnected() {
 
         ConnectivityManager manager = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
@@ -141,23 +131,18 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         View view = LayoutInflater.from(this).inflate(R.layout.my_dialog,null,false);
         final AlertDialog dialog = new AlertDialog.Builder(this).setView(view).create();
         getWindow().setBackgroundDrawableResource(android.R.color.transparent);
-        Button btn_cancel_high_opion = view.findViewById(R.id.btn_cancel_high_opion);
-        Button btn_agree_high_opion = view.findViewById(R.id.btn_agree_high_opion);
+        Button btn_setting = view.findViewById(R.id.btn_setting);
+        Button btn_cancel = view.findViewById(R.id.btn_cancel);
 
-        btn_cancel_high_opion.setOnClickListener(new View.OnClickListener() {
+        btn_setting.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Intent intent = new Intent();
-                //  类名一定要包含包名(这种显示意图不是很好，因为不同的系统可能包名，类名都不同，因此最好采用隐式意图进行跳转)
-                // intent.setClassName("com.android.phone",
-                // "com.android.phone.MiuiMobileNetworkSettings");
                 Intent intent = new Intent();
                 intent.setAction(Settings.ACTION_DATA_ROAMING_SETTINGS);
-                //startActivity(intent);
-                startActivityForResult(intent, 0);  // 如果在设置完成后需要再次进行操作，可以重写操作代码，在这里不再重写
+                startActivityForResult(intent, 0);
                 finish();
             }
         });
-        btn_agree_high_opion.setOnClickListener(new View.OnClickListener() {
+        btn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
@@ -165,7 +150,5 @@ public class MainActivity extends AppCompatActivity implements RadioGroup.OnChec
         });
         dialog.setCancelable(false);
         dialog.show();
-        //此处设置位置窗体大小，我这里设置为了手机屏幕宽度的3/4
-        //dialog.getWindow().setLayout((ScreenUtils.getScreenWidth(this)/4*3),LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 }

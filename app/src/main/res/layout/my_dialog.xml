@@ -35,7 +35,7 @@
         android:layout_height="30dp">
 
         <Button
-            android:id="@+id/btn_cancel_high_opion"
+            android:id="@+id/btn_setting"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:text="设置网络"
@@ -50,7 +50,7 @@
         android:background="#696969" />
 
         <Button
-            android:id="@+id/btn_agree_high_opion"
+            android:id="@+id/btn_cancel"
             android:layout_width="0dp"
             android:text="取消"
             android:textSize="15dp"

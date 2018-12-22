@@ -46,8 +46,6 @@
         android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <!--android:completionThreshold="1":将从输入第一个进行搜素匹配
-        <AutoCompleteTextView>:自动生成视图-->
         <AutoCompleteTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

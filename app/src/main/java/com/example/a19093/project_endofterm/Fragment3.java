@@ -33,8 +33,7 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
     private List<City> cityList;
     CityAdapter adapter;
 
-    public Fragment3() {
-    }
+    public Fragment3() { }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -50,33 +49,55 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
         switch (resultCode) {
             case 1:
                 String string_city = data.getStringExtra("cityName");
-                boolean flag = false;
-                Resources resources = this.getResources();
-                String[] country = resources.getStringArray(R.array.city_array);
-                for(int i = 1; i < country.length; i ++){
-                    if(country[i].equals(string_city)){
-                        flag = true;
-                    }
+                if(nameExistInList(string_city)){
+                    break;
                 }
-                if(!flag) break;
-                if(cityOperator.getIsExist(string_city) == 1){
-                    City city1 = cityOperator.getIsSelectCity();
-                    cityOperator.update(city1);
-                    City city2 = new City(string_city,"否");
-                    cityOperator.update(city2);
+                else if(!nameExistInList(string_city)){
+                    updateCurrentCity(string_city);
+                    draw();
                 }
-                else{
-                    City city1 = cityOperator.getIsSelectCity();
-                    cityOperator.update(city1);
-                    City city2 = new City(string_city, "是");
-                    cityOperator.add(city2);
-                }
-                draw();
                 break;
             default:
                 break;
         }
 
+    }
+
+    private void bindView(){
+        cityOperator = new CityOperator(getContext());
+        list_city = view.findViewById(R.id.list_city);
+        button = view.findViewById(R.id.add_city);
+        button.setOnClickListener(this);
+    }
+
+    private void draw(){
+        cityList = cityOperator.getItemCity();
+        adapter = new CityAdapter(cityList,getContext());
+        list_city.setAdapter(adapter);
+    }
+
+    private boolean nameExistInList(String name){
+        for(int i = 1; i < cityList.size(); i ++){
+            if(cityList.get(i).getName().equals(name)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void updateCurrentCity(String string_city){
+        if(cityOperator.getIsExist(string_city) == 1){
+            City city1 = cityOperator.getIsSelectCity();
+            cityOperator.update(city1);
+            City city2 = new City(string_city,"否");
+            cityOperator.update(city2);
+        }
+        else if(cityOperator.getIsExist(string_city) == 0){
+            City city1 = cityOperator.getIsSelectCity();
+            cityOperator.update(city1);
+            City city2 = new City(string_city, "是");
+            cityOperator.add(city2);
+        }
     }
 
     @Override
@@ -88,20 +109,4 @@ public class Fragment3 extends Fragment implements View.OnClickListener{
                 break;
         }
     }
-
-    private void bindView(){
-        cityOperator = new CityOperator(getContext());
-        list_city = view.findViewById(R.id.list_city);
-        button = view.findViewById(R.id.add_city);
-        button.setOnClickListener(this);
-    }
-    private void draw(){
-        cityList = cityOperator.getItemCity();
-        adapter = new CityAdapter(cityList,getContext());
-        list_city = view.findViewById(R.id.list_city);
-        list_city.setAdapter(adapter);
-    }
-
-
-
 }

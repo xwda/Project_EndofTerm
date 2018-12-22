@@ -4,11 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 
 public class StreamTool {
-    /**
-     * @param inStream 输入流
-     * @return  byte[] 返回的字符串
-     * @throws Exception
-     */
     public static byte[] read(InputStream inStream) throws Exception{
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];

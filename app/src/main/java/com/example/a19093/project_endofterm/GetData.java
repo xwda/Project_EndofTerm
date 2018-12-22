@@ -5,7 +5,6 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class GetData {
-    // 获取网页的html源代码
     public static String getJson(String path) throws Exception {
         URL url = new URL(path);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();

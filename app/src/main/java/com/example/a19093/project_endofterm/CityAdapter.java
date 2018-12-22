@@ -15,14 +15,15 @@ import android.widget.Toast;
 import java.util.List;
 
 public class CityAdapter extends BaseAdapter{
-    Context context;
+    private Context context;
     private List<City> listCity;
-    CityOperator cityOperator;
+    private CityOperator cityOperator;
 
     public CityAdapter(List<City> listCity, Context context){
        this.listCity = listCity;
-        cityOperator = new CityOperator(context);
+       this.cityOperator = new CityOperator(context);
     }
+
     @Override
     public View getView(final int position, View view, ViewGroup viewGroup){
         ViewHolder viewHolder = null;
