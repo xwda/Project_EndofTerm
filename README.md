@@ -14,3 +14,9 @@
 4.	可以根据输入提示城市
 5.	记录添加的城市显示在列表，方便城市切换及供下次使用
 6.	添加下拉刷新操作，在刷新失败的时候，给出相关提示。
+
+实验相关截图如下：
+![](https://github.com/xueweidongdong/attendanceSystem_client_android/blob/master/weather_forecast/0.jpg)
+![](https://github.com/xueweidongdong/attendanceSystem_client_android/blob/master/weather_forecast/1.jpg)
+![](https://github.com/xueweidongdong/attendanceSystem_client_android/blob/master/weather_forecast/2.jpg)
+![](https://github.com/xueweidongdong/attendanceSystem_client_android/blob/master/weather_forecast/3.jpg)
